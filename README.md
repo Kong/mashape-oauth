@@ -12,6 +12,13 @@ npm install mashape-oauth
 
 Require the library and the one you wish to use.
 
+1. [OAuth](#using-oauth-1x-xauth-echo)
+  1. [getOAuthRequestToken](#getoauthrequesttoken---creating-request-token-call)
+  2. [getOAuthAccessToken](#getoauthaccesstoken---creating-oauth-access-token-call)
+  2. [getXAuthAccessToken](#getxauthaccesstoken---creating-xauth-access-token-call)
+  3. [Request Methods](#request-methods)
+2. [OAuth2](#using-oauth2)
+
 ***
 
 ### Using OAuth (1.x, XAuth, Echo):
@@ -20,8 +27,6 @@ Require the library and the one you wish to use.
 var OAuth = require('mashape-oauth').OAuth;
 var oa = new OAuth({ /* … options … */ }, callback);
 ```
-
-**Argument Documentation**
 
 - options `{Object}` OAuth Request Options
   - echo `{Object}` *Optional;* If it exists we treat the request as an echo request. See [Twitter](https://dev.twitter.com/docs/auth/oauth/oauth-echo).
@@ -60,10 +65,40 @@ oa.getOAuthRequestToken({ /* … parameters … */ }, callback);
 
 ```javascript
 oa.getOAuthRequestToken(function (error, oauth_token, oauth_token_secret, results) {
-  if (error)
+  if (error) 
     return res.send('Error getting OAuth Request Token: ' + error, 500);
   else
     // Usually a redirect happens here to the /oauth/authorize stage
+    return res.send('Successfully Obtained Token & Secret: ' + oauth_token + ' & ' + oauth_token_secret, 200);
+});
+```
+
+#### getOAuthAccessToken() - Creating OAuth Access Token Call
+
+```javascript
+oa.getOAuthAccessToken(options, callback);
+```
+
+- options `{Object}` 
+  - oauth_verifier `{String}` Verification code tied to the Request Token. [Section 2.3](http://tools.ietf.org/html/rfc5849#section-2.3)
+  - oauth_token `{String}` Request Token
+  - oauth_token_secret `{String}` Request Token Secret, used to help generation of signatures.
+  - parameters `{Object}` *Optional;* Additional headers to be sent along with request.
+  - callback `{Function}` *Optional;* Method to be invoked upon result, over-ridden by argument if set.
+- callback `{Function}` Method to be invoked upon result, over-rides options callback.
+
+##### Example
+
+```javascript
+oa.getOAuthAccessToken({
+  oauth_verifier: 'ssid39b',
+  oauth_token: 'request_key',
+  oauth_secret: 'request_secret'
+}, function (error, token, secret, result) {
+  if (error) 
+    return res.send('Error getting XAuth Access Token: ' + error, 500);
+  else
+    // Usually you want to store the token and secret in a session and make your requests after this
     return res.send('Successfully Obtained Token & Secret: ' + oauth_token + ' & ' + oauth_token_secret, 200);
 });
 ```
@@ -83,13 +118,36 @@ oa.getXAuthAccessToken(username, password, callback);
 
 ```javascript
 oa.getXAuthAccessToken('nijikokun', 'abc123', function (error, oauth_token, oauth_token_secret, results) {
-  if (error)
+  if (error) 
     return res.send('Error getting XAuth Access Token: ' + error, 500);
   else
     // Usually you want to store the token and secret in a session and make your requests after this
     return res.send('Successfully Obtained Token & Secret: ' + oauth_token + ' & ' + oauth_token_secret, 200);
 });
 ```
+
+#### Request Methods
+
+```javascript
+oa.post(options, callback);
+oa.get(options, callback);
+oa.delete(options, callback);
+oa.patch(options, callback);
+oa.put(options, callback);
+
+// Alternatively, you can use the old node-oauth style: (Where method is one of five above.)
+oa.method(url, oauth_token, oauth_token_secret, body, type, parameters, callback);
+```
+
+- options `{Object}` Contains Request Information
+  - url `{String}` URL to be requested upon
+  - oauth_token `{String}` *Optional;* Dependant upon request step, could be access, or request token.
+  - oauth_token_secret `{String}` *Optional;* Dependant upon request step
+  - body `{String}` *Optional;* Body information to be sent along with request.
+  - type `{String}` *Optional;* Content Request Type
+  - parameters `{Object}` *Optional;* Additional headers you wish to pass along with your request.
+  - callback `{Function}` *Optional;* Method to be invoked upon result, over-ridden by argument if set.
+- callback `{Function}` Method to be invoked upon result, over-rides options callback.
 
 ***
 
@@ -99,8 +157,6 @@ oa.getXAuthAccessToken('nijikokun', 'abc123', function (error, oauth_token, oaut
 var OAuth2 = require('mashape-oauth').OAuth2;
 var oa = new OAuth2({ /* … options … */ }, callback);
 ```
-
-**Argument Documentation:**
 
 - options `{Object}` OAuth Request Options
   - clientId `{String}` Client Identifier
