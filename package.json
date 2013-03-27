@@ -1,0 +1,38 @@
+{
+  "name": "mashape-oauth",
+  "version": "0.0.1",
+  "description": "Library for handling OAuth (1.0a, Echo, XAuth, and 2.0) Requests and Responses",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "~1.8.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": "",
+  "keywords": [
+    "authentication",
+    "oauth",
+    "http",
+    "request",
+    "response",
+    "hmac",
+    "sha1",
+    "plaintext",
+    "rsa",
+    "1.0a",
+    "2.0",
+    "echo",
+    "xauth",
+    "2-legged",
+    "3-legged",
+    "two-legged",
+    "three-legged"
+  ],
+  "author": "Nijiko Yonskai",
+  "license": "MIT"
+}
