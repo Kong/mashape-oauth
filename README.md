@@ -10,12 +10,15 @@ npm install mashape-oauth
 
 # Usage
 
-Using OAuth (1.x, XAuth, Echo):
+Require the library and the one you wish to use.
+
+***
+
+### Using OAuth (1.x, XAuth, Echo):
 
 ```javascript
 var OAuth = require('mashape-oauth').OAuth;
-
-var oa = new OAuth({ /* ... options ... */ }, callback);
+var oa = new OAuth({ /* … options … */ }, callback);
 ```
 
 **Argument Documentation**
@@ -33,21 +36,68 @@ var oa = new OAuth({ /* ... options ... */ }, callback);
   - consumerSecret `{String}` The Consumer Secret
   - version `{String}` *Optional;* By spec this is `1.0` by default. [Section 6.3.1](http://oauth.net/core/1.0/#auth_step3)
   - signatureMethod `{String}` Type of signature to generate, must be one of:
-    - PLAINTEXT
-    - RSA-SHA1
-    - HMAC-SHA1
+      - PLAINTEXT
+      - RSA-SHA1
+      - HMAC-SHA1
   - nonceLength `{Number}` *Optional;* Length of nonce string. Default `32`
   - headers `{Object}` *Optional;* Headers to be sent along with request, by default these are already set.
   - clientOptions `{Object}` *Optional;* Contains `requestTokenHttpMethod` and `accessTokenHttpMethod` value.
   - parameterSeperator `{String}` *Optional;* Seperator for OAuth header parameters, default is `,`
 - callback `{String}` *Optional;* callback uri, over-rides options callback.
 
-Using OAuth2:
+#### getOAuthRequestToken() - Creating Request Token Call
+
+```javascript
+oa.getOAuthRequestToken({ /* … parameters … */ }, callback);
+```
+
+- parameters `{Object}` *Optional;* Additional Headers you might want to pass along.
+  - If omitted, you can treat parameters argument as callback and pass along a function as a single parameter.
+- callback `{Function}` Anonymous Function to be invoked upon response or failure.
+
+
+##### Example
+
+```javascript
+oa.getOAuthRequestToken(function (error, oauth_token, oauth_token_secret, results) {
+  if (error)
+    return res.send('Error getting OAuth Request Token: ' + error, 500);
+  else
+    // Usually a redirect happens here to the /oauth/authorize stage
+    return res.send('Successfully Obtained Token & Secret: ' + oauth_token + ' & ' + oauth_token_secret, 200);
+});
+```
+
+#### getXAuthAccessToken() - Creating XAuth Access Token Call
+
+```javascript
+oa.getXAuthAccessToken(username, password, callback);
+```
+
+- username `{String}` XAuth Username credentials of User obtaining a token on behalf of
+- password `{String}` XAuth Password credentials of User obtaining a token on behalf of
+- callback `{Function}` Anonymous Function to be invoked upon response or failure.
+
+
+##### Example
+
+```javascript
+oa.getXAuthAccessToken('nijikokun', 'abc123', function (error, oauth_token, oauth_token_secret, results) {
+  if (error)
+    return res.send('Error getting XAuth Access Token: ' + error, 500);
+  else
+    // Usually you want to store the token and secret in a session and make your requests after this
+    return res.send('Successfully Obtained Token & Secret: ' + oauth_token + ' & ' + oauth_token_secret, 200);
+});
+```
+
+***
+
+### Using OAuth2:
 
 ```javascript
 var OAuth2 = require('mashape-oauth').OAuth2;
-
-var oa = new OAuth2({ /* ... options ... */ }, callback);
+var oa = new OAuth2({ /* … options … */ }, callback);
 ```
 
 **Argument Documentation:**
@@ -62,3 +112,4 @@ var oa = new OAuth2({ /* ... options ... */ }, callback);
   - accessTokenName `{String}` *Optional;* Access Token Parameter Name, default is `access_token`
   - headers `{Object}` *Optional;* Custom headers we wish to pass along
 
+***
