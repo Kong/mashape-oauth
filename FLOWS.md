@@ -36,6 +36,8 @@ I tried to make this as understandable as possible for any party reading it whic
   - Signature Encryption Method, Secure Hash Algorithm (1) Method, Encrypted Text
 * RSA-SHA1 [[W](http://en.wikipedia.org/wiki/RSA_(algorithm\))]
   - Signature Encryption Method, Secure Hash Algorithm (1) coupled with a public and private key. You may have seen this being used for your github account at one point, also in SSH.
+* Service
+  - Provider of information, data-source, or supplying use. Twitter is an example of a service.
 * Signature Method
   - OAuth Accepted Encryption method, one of the following: PLAINTEXT, HMAC-SHA1, and RSA-SHA1.
 * Value
@@ -65,7 +67,7 @@ this has also been depricated in favor of OAuth2.
     - `oauth_signature`
     - `oauth_signature_method`
     - `oauth_version` *Optional*
-2. Server Validates and Grants Access to Resources.
+2. Service Validates and Grants Access to Resources.
 3. Application Utilizes Requested Resources
 
 This is probably the most quickest method of consuming an OAuth implementation however it comes with a few drawbacks on security which you can assume for yourself whether it is the best for your application.
@@ -96,7 +98,7 @@ The real two-legged OAuth implementation, so lucrative it's like finding a diamo
     - `oauth_signature`
     - `oauth_signature_method`
     - `oauth_version`
-3. Server grants Access Token & Token Secret (same arguments generally as Step 2)
+3. Service grants Access Token & Token Secret (same arguments generally as Step 2)
 4. Application uses `oauth_token` & `oauth_token_secret` to access protected resources.
 
 Here is the actual flow of OAuth 1.0a 2-legged, here we can see the extra security measures in place to make sure a secure access connection has been made without bothering the user to authorize details.
@@ -107,7 +109,7 @@ This flow is the full experience, the grand finale, the whole shebang. It's the 
 
 ***
 
-<img src="http://puu.sh/2ph9x.png" align="right" />
+<img src="http://puu.sh/2pJ4y" align="right" />
 
 1. Application sends a **signed** request for a Request Token:
     - `oauth_consumer_key`
@@ -137,7 +139,7 @@ This flow is the full experience, the grand finale, the whole shebang. It's the 
     - `oauth_signature_method`
     - `oauth_version`
     - `oauth_verifier`
-3. Server grants Access Token & Token Secret (same arguments generally as Step 2)
+3. Service grants Access Token & Token Secret (same arguments generally as Step 2)
 4. Application uses `oauth_token` & `oauth_token_secret` to access protected resources.
 
 ***
@@ -148,23 +150,49 @@ This flow is the full experience, the grand finale, the whole shebang. It's the 
 
 The most secure OAuth implementation so far, yet a little more complicated seeing as the user is a part of the handshake and must interact with ui's during the transactions.
 
-## OAuth 2
+## OAuth 1.0a (Echo)
 
+Not necessarily the most common of OAuth implementations, but it exists. Created by Raffi from twitter it uses two extra headers in the initial request token step to validate your user on their behalf by delegation.
+
+So essentially the Service (third-party, delegator) will authenticate and verify the user against the originating service such as Twitter (Origin Service).
+
+***
+
+
+1. Application sends a signed request along with any data and:
+    - `oauth_consumer_key`
+    - `oauth_timestamp`
+    - `oauth_nonce`
+    - `oauth_signature`
+    - `oauth_signature_method`
+    - `oauth_version` *Optional*
+    - `oauth_callback`
+    
+    Along with two additional headers:
+    - `X-Auth-Service-Provider`
+    - `X-Verify-Credentials-Authorization`
+2. Service takes the additional headers and validates against the Origin Service.
+3. Service then validates against given information and returns protected resource information. This could be storing an image, generating the url and returning that information.
+
+## OAuth 2 (2-Legged)
+
+## OAuth 2 (3-Legged)
 
 ## Sources
 
 Here is a long, windy list of places where I tracked down specific information regarding certain legs or auth specification excluding the original RFC and it's revisions.
 
-1. [Flickr OAuth](http://www.flickr.com/services/api/auth.oauth.html)
-2. [Bitbucket OAuth](https://confluence.atlassian.com/display/BITBUCKET/OAuth+on+Bitbucket)
-3. [Twitter OAuth](https://dev.twitter.com/docs/auth/oauth)
+1. [Authorizing with OAuth](http://www.flickr.com/services/api/auth.oauth.html) - Flickr Documentation
+2. [OAuth on Bitbucket](https://confluence.atlassian.com/display/BITBUCKET/OAuth+on+Bitbucket) - Bitbucket Documentation
+3. [OAuth Documentation](https://dev.twitter.com/docs/auth/oauth) - Twitter Documentation
 4. [OAuth Extended Flows](http://2.bp.blogspot.com/-Va1Rp3-r898/TZiVh9xEJDI/AAAAAAAAAMw/8ImBIW_dXuY/s1600/OAuth-legs.png)
-5. [OAuth-PHP](https://code.google.com/p/oauth-php/wiki/ConsumerHowTo#Two-legged_OAuth)
+5. [2-Legged OAuth](https://code.google.com/p/oauth-php/wiki/ConsumerHowTo#Two-legged_OAuth) - OAuth-PHP
 6. [OAuth for Consumer Requests](http://oauth.googlecode.com/svn/spec/ext/consumer_request/1.0/drafts/2/spec.html)
-7. [term.ie OAuth Example](http://term.ie/oauth/example/)
-8. [Hueniverse OAuth 1.0 Guide](http://hueniverse.com/oauth/guide/)
+7. [OAuth Example](http://term.ie/oauth/example/) - term.ie
+8. [OAuth 1.0 Guide](http://hueniverse.com/oauth/guide/) - Heuniverse
 9. [OAuth 1.0a Diagram](http://oauth.net/core/diagram.png)
 10. [OAuth Wiki](http://wiki.oauth.net)
-11. [DZone 2-Legged OAuth 1.0 & 2.0](http://architects.dzone.com/articles/2-legged-oauth-oauth-10-and-20)
-12. [Google OAuth](https://developers.google.com/accounts/docs/OAuth) & [OAuth2](https://developers.google.com/accounts/docs/OAuth2)
-13. [What is 2-legged OAuth?](http://blog.nerdbank.net/2011/06/what-is-2-legged-oauth.html)
+11. [2-Legged OAuth 1.0 & 2.0](http://architects.dzone.com/articles/2-legged-oauth-oauth-10-and-20) - DZone
+12. [OAuth](https://developers.google.com/accounts/docs/OAuth) & [OAuth2](https://developers.google.com/accounts/docs/OAuth2) - Google Documentation
+13. [What is 2-legged OAuth?](http://blog.nerdbank.net/2011/06/what-is-2-legged-oauth.html) - Nerdbank
+14. [List of Service Providers](http://en.wikipedia.org/wiki/OAuth#List_of_OAuth_service_providers) - Wikipedia
