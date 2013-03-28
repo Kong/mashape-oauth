@@ -2,6 +2,16 @@
 
 I tried to make this as understandable as possible for any party reading it which means that the wording, references, and terminology used may not reflect that of a technical paper or resource. Excuse me if you may for I wish all to understand this, and not just those with a degree in understanding legal or technical jargon.
 
+## Table Of Contents
+
+1. OAuth 1.0a
+   1. [One Legged](#oauth-10a-one-legged)
+   2. [Two Legged](#oauth-10a-two-legged)
+   3. [Three Legged](#oauth-10a-three-legged)
+   4. Echo
+   5. XAuth
+2. OAuth2
+
 ## Terminology / Reference
 
 * Signed / Signature
@@ -86,7 +96,6 @@ The real two-legged OAuth implementation, so lucrative it's like finding a diamo
 4. Application uses `oauth_token` & `oauth_token_secret` to access protected resources.
 
 Here is the actual flow of OAuth 1.0a 2-legged, here we can see the extra security measures in place to make sure a secure access connection has been made without bothering the user to authorize details.
-
 
 ## OAuth 1.0a (three-legged)
 
