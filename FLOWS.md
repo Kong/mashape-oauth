@@ -26,6 +26,8 @@ I tried to make this as understandable as possible for any party reading it whic
   - This is a token sent by the server or endpoint. It can refer to either the Request or Access token.
 * OAuth Token Secret
   - This is a secret generally sent with the response for a certain token. Used for exchanges / refreshing.
+* Query
+  - URL Query String `?query=looks&like=this`
 * Parameter / Argument
   - These are snippets of information that have a name reference such as `oauth_token="helloWorld"` where `oauth_token` is the parameter or argument and `helloWorld` is the value.
 * Plaintext
@@ -38,6 +40,8 @@ I tried to make this as understandable as possible for any party reading it whic
   - OAuth Accepted Encryption method, one of the following: PLAINTEXT, HMAC-SHA1, and RSA-SHA1.
 * Value
   - Information in relation to something such as a parameter.
+* URL / URI
+  - Location on the internet or resource locator.
 
 ## OAuth 1.0a (one-legged)
 
@@ -98,5 +102,50 @@ The real two-legged OAuth implementation, so lucrative it's like finding a diamo
 Here is the actual flow of OAuth 1.0a 2-legged, here we can see the extra security measures in place to make sure a secure access connection has been made without bothering the user to authorize details.
 
 ## OAuth 1.0a (three-legged)
+
+This flow is the full experience, the grand finale, the whole shebang. It's the full-flow of OAuth 1.0a, and the most complex, excluding the other two variants on it. The user interaction in the middle of the flow is usually what causes most confusion.
+
+***
+
+<img src="http://puu.sh/2ph9x.png" align="right" />
+
+1. Application sends a **signed** request for a Request Token:
+    - `oauth_consumer_key`
+    - `oauth_timestamp`
+    - `oauth_nonce`
+    - `oauth_signature`
+    - `oauth_signature_method`
+    - `oauth_version` *Optional*
+    - `oauth_callback`
+2. Grants application Request Token:
+    - `oauth_token`
+    - `oauth_token_secret`
+    - `oauth_callback_confirmed`
+    - … Additional Parameters / Arguments
+3. Send user to authorize url using:
+    - `oauth_token`
+4. Prompts user to authorize / grant access
+5. User grants access
+6. Directs back to application with:
+    - `oauth_token`
+    - `oauth_verifier`
+3. Exchange Request Token / Verifier for Access Token (**signed** request)
+    - `oauth_token` *Request Token;*
+    - `oauth_consumer_key`
+    - `oauth_nonce`
+    - `oauth_signature`
+    - `oauth_signature_method`
+    - `oauth_version`
+    - `oauth_verifier`
+3. Server grants Access Token & Token Secret (same arguments generally as Step 2)
+4. Application uses `oauth_token` & `oauth_token_secret` to access protected resources.
+
+***
+
+**Note:** In *Step 6* if `oauth_verifier` has not been set, this is a failed OAuth 1.0a 3-Legged implementation and probably only requires the `oauth_token` to be sent. Rarely seen but they exist.
+
+***
+
+The most secure OAuth implementation so far, yet a little more complicated seeing as the user is a part of the handshake and must interact with ui's during the transactions.
 
 ## OAuth 2
