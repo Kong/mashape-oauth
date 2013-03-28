@@ -20,9 +20,9 @@ I tried to make this as understandable as possible for any party reading it whic
   - These are snippets of information that have a name reference such as `oauth_token="helloWorld"` where `oauth_token` is the parameter or argument and `helloWorld` is the value.
 * Plaintext
   - Signature Encryption Method, Plain Text, as in Human Readable Text such as this is.
-* HMAC-SHA1 [Wikipedia](http://en.wikipedia.org/wiki/Hash-based_message_authentication_code)
+* HMAC-SHA1 [[W](http://en.wikipedia.org/wiki/Hash-based_message_authentication_code)]
   - Signature Encryption Method, Secure Hash Algorithm (1) Method, Encrypted Text
-* RSA-SHA1 [Wikipedia](http://en.wikipedia.org/wiki/RSA_(algorithm\))
+* RSA-SHA1 [[W](http://en.wikipedia.org/wiki/RSA_(algorithm\))]
   - Signature Encryption Method, Secure Hash Algorithm (1) coupled with a public and private key. You may have seen this being used for your github account at one point, also in SSH.
 * Value
   - Information in relation to something such as a parameter.
@@ -33,22 +33,27 @@ What is commonly known as two-legged is actually one legged, there is only one s
 
 ***
 
-**Note:** Google requires an unorthodox non-oauth parameter that must be added to the query string of the url you are request called `xoauth_requester_id` [Reference](https://developers.google.com/google-apps/gmail/oauth_protocol#oauth_request_url) (This has also been depricated in favor of OAuth2)
+**Note:** Google requires an unorthodox non-oauth parameter that must be added to the query string of the url you are 
+request called `xoauth_requester_id` [[R](https://developers.google.com/google-apps/gmail/oauth_protocol#oauth_request_url)] 
+this has also been depricated in favor of OAuth2.
 
 ***
 
-<img src="http://puu.sh/2pdGK.png" align="right" />
+<img src="http://puu.sh/2pe07.png" align="right" />
 
-1. Create a **Signed** request using:
+1. Application sends a **signed** request to the Service giving it:
     - `oauth_token` *Empty String*
     - `oauth_consumer_secret`
     - `oauth_consumer_key`
     - `oauth_timestamp`
     - `oauth_nonce`
-  - `oauth_signature`
-  - `oauth_signature_method`
-  - `oauth_version` *Optional*
+    - `oauth_signature`
+    - `oauth_signature_method`
+    - `oauth_version` *Optional*
 2. Server Validates and Grants Access to Resources.
+3. Application Utilizes Requested Resources
+
+This is probably the most quickest method of consuming an OAuth implementation however it comes with a few drawbacks on security which you can assume for yourself whether it is the best for your application.
 
 ## OAuth 1.0a (two-legged)
 
