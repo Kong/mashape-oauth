@@ -149,3 +149,22 @@ This flow is the full experience, the grand finale, the whole shebang. It's the 
 The most secure OAuth implementation so far, yet a little more complicated seeing as the user is a part of the handshake and must interact with ui's during the transactions.
 
 ## OAuth 2
+
+
+## Sources
+
+Here is a long, windy list of places where I tracked down specific information regarding certain legs or auth specification excluding the original RFC and it's revisions.
+
+1. [Flickr OAuth](http://www.flickr.com/services/api/auth.oauth.html)
+2. [Bitbucket OAuth](https://confluence.atlassian.com/display/BITBUCKET/OAuth+on+Bitbucket)
+3. [Twitter OAuth](https://dev.twitter.com/docs/auth/oauth)
+4. [OAuth Extended Flows](http://2.bp.blogspot.com/-Va1Rp3-r898/TZiVh9xEJDI/AAAAAAAAAMw/8ImBIW_dXuY/s1600/OAuth-legs.png)
+5. [OAuth-PHP](https://code.google.com/p/oauth-php/wiki/ConsumerHowTo#Two-legged_OAuth)
+6. [OAuth for Consumer Requests](http://oauth.googlecode.com/svn/spec/ext/consumer_request/1.0/drafts/2/spec.html)
+7. [term.ie OAuth Example](http://term.ie/oauth/example/)
+8. [Hueniverse OAuth 1.0 Guide](http://hueniverse.com/oauth/guide/)
+9. [OAuth 1.0a Diagram](http://oauth.net/core/diagram.png)
+10. [OAuth Wiki](http://wiki.oauth.net)
+11. [DZone 2-Legged OAuth 1.0 & 2.0](http://architects.dzone.com/articles/2-legged-oauth-oauth-10-and-20)
+12. [Google OAuth](https://developers.google.com/accounts/docs/OAuth) & [OAuth2](https://developers.google.com/accounts/docs/OAuth2)
+13. [What is 2-legged OAuth?](http://blog.nerdbank.net/2011/06/what-is-2-legged-oauth.html)
