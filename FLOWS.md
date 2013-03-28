@@ -15,7 +15,7 @@ I tried to make this as understandable as possible for any party reading it whic
 ## Terminology / Reference
 
 * Signed / Signature
-  - This is usually a joined string of (the base) `Request Method` `&` `URL Query` `&` `Parameters (Sorted & Encoded)` and then encrypted against the key (`consumerSecret` `&` `token_secret`) for the final signature. In some cases this may be the **key**, Plaintext, or may use simply the `consumerSecret`, RSA.
+  - This is usually a joined string of (the base) `Request Method` `&` `URL Query` `&` `Parameters (Sorted & Encoded)` and then encrypted against the key (`consumer_secret` `&` `token_secret`) for the final signature. In some cases this may be the **key**, Plaintext, or may use simply the `consumerSecret`, RSA.
 * Consumer Secret
   - Usually given by application as a secret token for starting the OAuth handshakes.
 * Consumer Key
@@ -158,6 +158,8 @@ So essentially the Service (third-party, delegator) will authenticate and verify
 
 ***
 
+<img src="http://puu.sh/2pKKr.png" align="right" />
+
 
 1. Application sends a signed request along with any data and:
     - `oauth_consumer_key`
@@ -196,3 +198,5 @@ Here is a long, windy list of places where I tracked down specific information r
 12. [OAuth](https://developers.google.com/accounts/docs/OAuth) & [OAuth2](https://developers.google.com/accounts/docs/OAuth2) - Google Documentation
 13. [What is 2-legged OAuth?](http://blog.nerdbank.net/2011/06/what-is-2-legged-oauth.html) - Nerdbank
 14. [List of Service Providers](http://en.wikipedia.org/wiki/OAuth#List_of_OAuth_service_providers) - Wikipedia
+15. [OAuth Echo](http://developers.mobypicture.com/documentation/authentication/oauth-echo/) - mobypicture
+16. [OAuth Echo](https://dev.twitter.com/docs/auth/oauth/oauth-echo) - Twitter
