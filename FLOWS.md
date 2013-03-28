@@ -89,7 +89,7 @@ The real two-legged OAuth implementation, so lucrative it's like finding a diamo
     - `oauth_token`
     - `oauth_token_secret`
     - … Additional Parameters / Arguments
-3. Exchange Request Token for Access Token (**signed** request)
+3. Exchange Request Token for Access Token, **signed** request
     - `oauth_token` *Request Token*
     - `oauth_consumer_key`
     - `oauth_nonce`
@@ -129,7 +129,7 @@ This flow is the full experience, the grand finale, the whole shebang. It's the 
 6. Directs back to application with:
     - `oauth_token`
     - `oauth_verifier`
-3. Exchange Request Token / Verifier for Access Token (**signed** request)
+3. Exchange Request Token / Verifier for Access Token, **signed** request
     - `oauth_token` *Request Token;*
     - `oauth_consumer_key`
     - `oauth_nonce`
