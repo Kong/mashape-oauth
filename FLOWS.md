@@ -15,7 +15,7 @@ I tried to make this as understandable as possible for any party reading it whic
 ## Terminology / Reference
 
 * Signed / Signature
-  - This is usually a concatination of (the base) `Request Method` `&` `URL Query` `&` `Parameters (Sorted & Encoded)` and then encrypted against the key (`consumerSecret` `&` `token_secret`) for the final signature. In some cases this may be the **key**, Plaintext, or may use simply the `consumerSecret`, RSA.
+  - This is usually a joined string of (the base) `Request Method` `&` `URL Query` `&` `Parameters (Sorted & Encoded)` and then encrypted against the key (`consumerSecret` `&` `token_secret`) for the final signature. In some cases this may be the **key**, Plaintext, or may use simply the `consumerSecret`, RSA.
 * Consumer Secret
   - Usually given by application as a secret token for starting the OAuth handshakes.
 * Consumer Key
