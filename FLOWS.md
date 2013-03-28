@@ -24,6 +24,8 @@ I tried to make this as understandable as possible for any party reading it whic
   - Signature Encryption Method, Secure Hash Algorithm (1) Method, Encrypted Text
 * RSA-SHA1 [[W](http://en.wikipedia.org/wiki/RSA_(algorithm\))]
   - Signature Encryption Method, Secure Hash Algorithm (1) coupled with a public and private key. You may have seen this being used for your github account at one point, also in SSH.
+* Signature Method
+  - OAuth Accepted Encryption method, one of the following: PLAINTEXT, HMAC-SHA1, and RSA-SHA1.
 * Value
   - Information in relation to something such as a parameter.
 
@@ -43,7 +45,6 @@ this has also been depricated in favor of OAuth2.
 
 1. Application sends a **signed** request to the Service giving it:
     - `oauth_token` *Empty String*
-    - `oauth_consumer_secret`
     - `oauth_consumer_key`
     - `oauth_timestamp`
     - `oauth_nonce`
@@ -56,6 +57,36 @@ this has also been depricated in favor of OAuth2.
 This is probably the most quickest method of consuming an OAuth implementation however it comes with a few drawbacks on security which you can assume for yourself whether it is the best for your application.
 
 ## OAuth 1.0a (two-legged)
+
+The real two-legged OAuth implementation, so lucrative it's like finding a diamond in the rough. Here we also avoid the user authentication step but follow the other flows of OAuth.
+
+***
+
+<img src="http://puu.sh/2peUI.png" align="right" />
+
+1. Application sends a **signed** request for a Request Token:
+    - `oauth_consumer_key`
+    - `oauth_timestamp`
+    - `oauth_nonce`
+    - `oauth_signature`
+    - `oauth_signature_method`
+    - `oauth_version` *Optional*
+2. Grants application Request Token:
+    - `oauth_token`
+    - `oauth_token_secret`
+    - … Additional Parameters / Arguments
+3. Exchange Request Token for Access Token (**signed** request)
+    - `oauth_token` *Request Token*
+    - `oauth_consumer_key`
+    - `oauth_nonce`
+    - `oauth_signature`
+    - `oauth_signature_method`
+    - `oauth_version`
+3. Server grants Access Token & Token Secret (same arguments generally as Step 2)
+4. Application uses `oauth_token` & `oauth_token_secret` to access protected resources.
+
+Here is the actual flow of OAuth 1.0a 2-legged, here we can see the extra security measures in place to make sure a secure access connection has been made without bothering the user to authorize details.
+
 
 ## OAuth 1.0a (three-legged)
 
