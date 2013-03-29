@@ -14,7 +14,9 @@ I tried to make this as understandable as possible for any party reading it whic
    4. [Echo](#oauth-10a-echo)
    5. [xAuth](#oauth-10a-xauth)
 3. OAuth2
-   1. [Two-Legged](#oauth2-two-legged)
+   1. [Two-Legged](#oauth-2-two-legged)
+   2. [Three-Legged](#oauth-2-three-legged)
+   3. [Refresh Token](#oauth-2-refresh-token)
 4. [Sources](#sources)
 
 ## Terminology / Reference
@@ -325,10 +327,68 @@ The xAuth process will give back read-only, or read-write access tokens. Some li
 3. Application uses Access Token to retrieve protected resources.
 
 
-
 ## OAuth 2 (two-legged)
 
+
+
 ## OAuth 2 (three-legged)
+
+OAuth2 three-legged cuts out a lot of clutter just like the two-legged, no longer are things so complex with signing your requests.
+
+***
+
+**Fun Fact:** Scope by spec was to be space seperated (i.e. `user pull-request`) except companies like doing whatever they want like using comma to seperate scopes: `user,pull-request` so now we have tons of edge-cases
+
+***
+
+1. Application redirects User to Service for Authorization:
+    - `client_id`
+    - `redirect_uri`
+    - `response_type` [[20, 4.1.1]](http://tools.ietf.org/html/draft-ietf-oauth-v2-31#section-4.1.1)
+    - `state` *Optional;* Unique identifier to protect against CSRF [[25]](http://blog.springsource.org/2011/11/30/10317/)
+    - `scope` *Optional;* what data your application can access.
+    
+    Example Authorization URL (Not-Encoded for Readability):
+    
+    ```
+https://oauth_service/login/oauth/authorize?client_id=3MVG9lKcPoNINVB&redirect_url=http://localhost/oauth/code_callback&scope=user
+    ```
+2. User logs into the Service and grants Application access.
+3. Service redirects User back to the `redirect_url` with:
+    - `code`
+    - `state`
+4. Application takes the `code` and exchanges it for an Access Token:
+    - `client_id`
+    - `client_secret`
+    - `code`
+    - `redirect_uri` *Optional;* see [[20, 4.1.3]](http://tools.ietf.org/html/rfc6749#section-4.1.3)
+    - `grant_type` = `"authorization_code"` [[20, 4.1.3]](http://tools.ietf.org/html/rfc6749#section-4.1.3)
+2. If `client_id` and `client_secret`* are valid the Service will invoke a callback on `redirect_url` that contains an `access_token`:
+    - `access_token`
+    - `expires_in`
+    - `refresh_token`
+3. Application stores `access_token` to use in subsequent requests in various manners dependant on the Service.
+    - Generally this value is stored in a session or cookie, and then placed into the request as an `Authorization: [Bearer] access_token` header string where `[Bearer]` is the Header Authorization Bearer Name it could be Bearer, OAuth, MAC, etc…
+
+
+## OAuth 2 (refresh token)
+
+In OAuth2 the `access_token` sometimes, which is most of the time, has a limited lifetime expectancy. We can assume by the `expires_in` parameter passed along at the Access Token response stage whether it will live forever or decay in a certain amount of time.
+
+If an expired token is used the Service will respond with a Session expired or Invalid response error. This means we must use the `refresh_token` along with a few other previously obtained parameters to generate a new one. A lot easier than the whole flow.
+
+***
+
+1. Create request to Service Refresh Token URI:
+   - `grant_type` = `"refresh_token"`
+   - `scope` *Optional;* Cannot have any new scopes not previously defined.
+   - `refresh_token`
+   - `client_id`
+   - `client_secret`
+2. Service validates and responds with the following parameters:
+   - `access_token`
+   - `issued_at`
+
 
 ## Sources
 
@@ -353,3 +413,9 @@ Here is a long, windy list of places where I tracked down specific information r
 17. [Advanced API](http://developer.vimeo.com/apis/advanced) - Vimeo Developer();
 18. [About xAuth](https://dev.twitter.com/docs/oauth/xauth) - Twitter xAuth Documentation
 19. [Implementing Sign-in](https://dev.twitter.com/docs/auth/implementing-sign-twitter) - Twitter Sign-in Documentation
+20. [RFC6749](http://tools.ietf.org/html/rfc6749) - IETF
+21. [Web Application Flow](http://developer.github.com/v3/oauth/) - Github OAuth2
+22. [OAuth2 Quickstart](http://www.salesforce.com/us/developer/docs/api_rest/Content/quickstart_oauth.htm) - Salesforce
+23. [Authentication Mechanisms](https://developers.geoloqi.com/api/authentication) - Geoloqi
+24. [Understanding Web Server OAuth Flow](http://www.salesforce.com/us/developer/docs/api_rest/Content/intro_understanding_web_server_oauth_flow.htm) - Salesforce
+25. [CSRF & OAuth2](http://blog.springsource.org/2011/11/30/10317/) - Springsource
