@@ -306,6 +306,8 @@ The xAuth process will give back read-only, or read-write access tokens. Some li
 
 ***
 
+[<img src="http://puu.sh/2qneC.png" align="right" />](http://puu.sh/2qnhm.png)
+
 1. Application Requests User Credentials
 2. Application creates signed request for Access Token:
     - `oauth_consumer_key`
