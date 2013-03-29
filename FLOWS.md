@@ -4,8 +4,9 @@ I tried to make this as understandable as possible for any party reading it whic
 
 ## Table Of Contents
 
-1. [Terminology / Reference](#terminology--reference)
-   1. [Signed Requests](#signed-requests)
+1. Reference
+   1. [Terminology](#terminology--reference)
+   2. [Signed Requests](#signed-requests)
 2. OAuth 1.0a
    1. [One Legged](#oauth-10a-one-legged)
    2. [Two Legged](#oauth-10a-two-legged)
@@ -14,6 +15,7 @@ I tried to make this as understandable as possible for any party reading it whic
    5. [xAuth](#oauth-10a-xauth)
 3. OAuth2
    1. [Two-Legged](#oauth2-two-legged)
+4. [Sources](#sources)
 
 ## Terminology / Reference
 
