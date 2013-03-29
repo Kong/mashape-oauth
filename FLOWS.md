@@ -4,13 +4,16 @@ I tried to make this as understandable as possible for any party reading it whic
 
 ## Table Of Contents
 
-1. OAuth 1.0a
+1. [Terminology / Reference](#terminology--reference)
+   1. [Signed Requests](#signed-requests)
+2. OAuth 1.0a
    1. [One Legged](#oauth-10a-one-legged)
    2. [Two Legged](#oauth-10a-two-legged)
    3. [Three Legged](#oauth-10a-three-legged)
-   4. Echo
-   5. XAuth
-2. OAuth2
+   4. [Echo](#oauth-10a-echo)
+   5. [xAuth](#oauth-10a-xauth)
+3. OAuth2
+   1. [Two-Legged](#oauth2-two-legged)
 
 ## Terminology / Reference
 
@@ -44,6 +47,117 @@ I tried to make this as understandable as possible for any party reading it whic
   - Information in relation to something such as a parameter.
 * URL / URI
   - Location on the internet or resource locator.
+  
+### Signed Requests
+
+Signing a requests is more than just the signature step, it also includes either the header or query creation step. In this step the Application takes all the information it has gathered and generated and places in a single string.
+
+Some requests will use the `OAuth` header for this, and others will use another which is the URL Query. In this section, we will look at how the signature process should be handled and how each parameter should be used with references to flows.
+
+***
+
+**Note:** This section is in regards to OAuth 1.0
+
+***
+
+On the first leg of generating such a string we must collect all the required parameters and their values, some of these are used inside of the string directly and others in-directly through the encryption or encoding of the signature.
+
+#### Signature Base String
+
+Gathering the `Method` of the request, the `URL` of the request (or in the case of Echo the verifying credentials URL) and the `Query String` joined together by the `&` character would look like this raw (taken from [this](https://dev.twitter.com/docs/auth/creating-signature) twitter page):
+
+```
+POST&https%3A%2F%2Fapi.twitter.com%2F1%2Fstatuses%2Fupdate.json&include_entities%3Dtrue%26oauth_consumer_key%3Dxvz1evFS4wEEPTGEFPHBog%26oauth_nonce%3DkYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1318622958%26oauth_token%3D370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb%26oauth_version%3D1.0%26status%3DHello%2520Ladies%2520%252B%2520Gentlemen%252C%2520a%2520signed%2520OAuth%2520request%2521
+```
+
+##### Signing Key
+
+Which is then encoded against a *signing key* which in some flows is different than others but is always a joining of the OAuth `Consumer Secret` and `Token Secret` once again by the `&` character like so:
+
+***
+
+**Note:** Sometimes in case of RSA and xAuth the signing key may only be the `Consumer Secret` with an `&` appended or not. For more insights check out lines [180](https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L180) & [186](https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L186) of mashape-oauth/lib/oauth.js
+
+***
+
+```
+kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw&LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE
+```
+
+#### Encoding the Signature
+
+At last, we are able to encode our signature using these two strings of information. If you read the Terminology guide you would know that there are three ways we can do this. PLAINTEXT, HMAC, or RSA. Each method is slightly different from each other.
+
+##### PLAINTEXT
+
+Here we ignore any encoding and simply pass along the `Signature Key`
+
+
+##### HMAC-SHA1
+
+This encoding method outputs our key into binary which we update our base with, which after this step gets Base64 encoded into it's final signature string:
+
+```
+tnnArxj06cWHq44gCs1OSKk/jLY=
+```
+
+##### RSA-SHA1
+
+On the more complex side of encoding and security we have the RSA method that we have to encode the generated `private key` against our `Signature Base`.
+
+***
+
+**Note:** Line [74](https://github.com/Mashape/mashape-oauth/blob/master/tests/oauth.js#L74) of mashape-oauth/tests/oauth.js may clear up how to use the generated private key to encode against the signature base.
+
+***
+
+Then on the service side they verify the public key that was generated along-side the private key against the encoded string passed as `oauth_signature`.
+
+#### OAuth Header
+
+The OAuth header is a part of the signed request, it contains the `oauth_signature` and `oauth_signature_method` parameters and their values. It is a single string and seperated generally by a comma (spaces are supported here by some services, stick to comma by default unless told otherwise by the service) and named `Authorization` with `OAuth` being the Bearer, in other flows this may change such as the OAuth Mac Bearer and other similiar methods.
+
+The header itself is built up by all the `oauth_*` parameters sorted (by name, then some more [complex things](https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L111)). Here is an example taken from Twitter for getting a Request Token:
+
+```
+POST /oauth/request_token HTTP/1.1
+User-Agent: themattharris' HTTP Client
+Host: api.twitter.com
+Accept: */*
+Authorization:
+        OAuth oauth_callback="http%3A%2F%2Flocalhost%2Fsign-in-with-twitter%2F",
+              oauth_consumer_key="cChZNFj6T5R0TigYB9yd1w",
+              oauth_nonce="ea9ec8429b68d6b77cd5600adbbb0456",
+              oauth_signature="F1Li3tvehgcraF8DMJ7OyxO4w9Y%3D",
+              oauth_signature_method="HMAC-SHA1",
+              oauth_timestamp="1318467427",
+              oauth_version="1.0"
+```
+
+The `oauth_callback` is what twitter will invoke or respond to when the authentication step happens, some services tell you they have successfully confirmed this information with a `oauth_callback_confirmed` token (This should be the defacto situation).
+
+Now, lets see the example response:
+
+```
+HTTP/1.1 200 OK
+Date: Thu, 13 Oct 2011 00:57:06 GMT
+Status: 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 146
+Pragma: no-cache
+Expires: Tue, 31 Mar 1981 05:00:00 GMT
+Cache-Control: no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+Vary: Accept-Encoding
+Server: tfe
+
+oauth_token=NPcudxy0yU5T3tBzho7iCotZ3cnetKwcTIRlX0iwRl0&
+oauth_token_secret=veNRnAWe6inFuo8o2u8SLLZLjolYDmDP7SzL0YfYI&
+oauth_callback_confirmed=true
+```
+
+Great, `200` response with the `oauth_token`, `oauth_token_secret` and `oauth_callback_confirmed` parameters. This is perfect, now you can use the `oauth_token_secret` for creating your signature for the access token and `oauth_token` for authenticating the request.
+
+Generally, the `oauth_token` will be sent along as a query parameter `?oauth_token=[token goes here]` on the authenticate endpoint if we were doing a three-legged OAuth 1.0a request which should give you back the `oauth_token` and `oauth_verifier` which then are used as well in your  Access Token request [[19]](https://dev.twitter.com/docs/auth/implementing-sign-twitter).
 
 ## OAuth 1.0a (one-legged)
 
@@ -176,9 +290,43 @@ So essentially the Service (third-party, delegator) will authenticate and verify
 2. Service takes the additional headers and validates against the Origin Service.
 3. Service then validates against given information and returns protected resource information. This could be storing an image, generating the url and returning that information.
 
-## OAuth 2 (2-Legged)
+## OAuth 1.0a (xAuth)
 
-## OAuth 2 (3-Legged)
+xAuth is a way for desktop and mobile apps to get an OAuth access token from a user’s email and password, and it is still OAuth. So the third-party will ask for your credentials on the origin service to authenticate with.
+
+The xAuth process will give back read-only, or read-write access tokens. Some limitations can apply, as in the Twitter spec Direct Messages read access is not provided and you must use the full OAuth flow (three-legged).
+
+***
+
+**Note:** The user's credentials should never be kept by the application requesting them.
+
+***
+
+1. Application Requests User Credentials
+2. Application creates signed request for Access Token:
+    - `oauth_consumer_key`
+    - `oauth_timestamp`
+    - `oauth_nonce`
+    - `oauth_signature`
+    - `oauth_signature_method`
+    - `oauth_version` *Optional*
+    - `oauth_callback`
+    
+    Along with additional parameters:
+    - `x_auth_mode` = `client_auth`
+    - `x_auth_username`
+    - `x_auth_password`
+    - `x_auth_permission` *Optional;* Scope of the requested token [[17]](http://developer.vimeo.com/apis/advanced)
+2. Service validates user details and grants Access Token
+    - `oauth_token`
+    - `oauth_token_secret`
+3. Application uses Access Token to retrieve protected resources.
+
+
+
+## OAuth 2 (two-legged)
+
+## OAuth 2 (three-legged)
 
 ## Sources
 
@@ -200,3 +348,6 @@ Here is a long, windy list of places where I tracked down specific information r
 14. [List of Service Providers](http://en.wikipedia.org/wiki/OAuth#List_of_OAuth_service_providers) - Wikipedia
 15. [OAuth Echo](http://developers.mobypicture.com/documentation/authentication/oauth-echo/) - mobypicture
 16. [OAuth Echo](https://dev.twitter.com/docs/auth/oauth/oauth-echo) - Twitter
+17. [Advanced API](http://developer.vimeo.com/apis/advanced) - Vimeo Developer();
+18. [About xAuth](https://dev.twitter.com/docs/oauth/xauth) - Twitter xAuth Documentation
+19. [Implementing Sign-in](https://dev.twitter.com/docs/auth/implementing-sign-twitter) - Twitter Sign-in Documentation
