@@ -1,4 +1,4 @@
-# OAuth Flows / Reference
+# The OAuth Bible
 
 I tried to make this as understandable as possible for any party reading it which means that the wording, references, and terminology used may not reflect that of a technical paper or resource. Excuse me if you may for I wish all to understand this, and not just those with a degree in understanding legal or technical jargon.
 
