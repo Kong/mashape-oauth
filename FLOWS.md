@@ -331,6 +331,49 @@ The xAuth process will give back read-only, or read-write access tokens. Some li
 
 ## OAuth 2 (two-legged)
 
+By far the easiest to explain, here we have what is called a *Client Credentials* authorization flow. [[26, 4.4]](https://tools.ietf.org/html/draft-ietf-oauth-v2-31#section-4.4) Which is also basically just the *Resource Owner Password* flow without the username and password appended to the encoded query passed along as the body, unless the service states through the url in which case is wrong.
+
+
+***
+
+**Note** If you are using basic, you will need to additionally pass along an `Authorization` header with the bearer type as `Basic` and as the value you use `client_id` `:` `client_secret` Base64 encoded.
+
+```
+Authorization: Basic Base64(client_id:client_secret)
+```
+
+***
+
+### Client Credentials
+
+1. Application makes request to Service:
+  - `grant_type` = `client_credentials`
+  
+  If you aren't using the `Authorization` header:
+  - `client_id`
+  - `client_secret`
+2. Service responds with Access Token:
+    - `access_token`
+    - `expires_in`
+    - `token_type`
+
+### Resource Owner Password
+
+Basically OAuth 1.0a Echo… without the signing and complications. Let's do this.
+
+1. Owner delegates credentials to Application for Service
+2. Application makes request to Service using credentials:
+    - `grant_type` = `password`
+    - `username`
+    - `password`
+    
+    If you aren't using `Authorization` header:
+    - `client_id`
+    - `client_secret`
+3. Service responds with Access Token:
+    - `access_token`
+    - `expires_in`
+    - `token_type`
 
 
 ## OAuth 2 (three-legged)
@@ -421,3 +464,5 @@ Here is a long, windy list of places where I tracked down specific information r
 23. [Authentication Mechanisms](https://developers.geoloqi.com/api/authentication) - Geoloqi
 24. [Understanding Web Server OAuth Flow](http://www.salesforce.com/us/developer/docs/api_rest/Content/intro_understanding_web_server_oauth_flow.htm) - Salesforce
 25. [CSRF & OAuth2](http://blog.springsource.org/2011/11/30/10317/) - Springsource
+26. [OAuth v2-31](https://tools.ietf.org/html/draft-ietf-oauth-v2-31) - IETF
+27. [Resource Owner Flow](http://techblog.hybris.com/2012/06/11/oauth2-resource-owner-password-flow/) - Hybris
