@@ -42,7 +42,7 @@ I tried to make this as understandable as possible for any party reading it whic
 * HMAC-SHA1 [[W](http://en.wikipedia.org/wiki/Hash-based_message_authentication_code)]
   - Signature Encryption Method, Secure Hash Algorithm (1) Method, Encrypted Text
 * RSA-SHA1 [[W](http://en.wikipedia.org/wiki/RSA_(algorithm\))]
-  - Signature Encryption Method, Secure Hash Algorithm (1) coupled with a public and private key. You may have seen this being used for your github account at one point, also in SSH.
+  - Signature Encryption Method, Secure Hash Algorithm (1) coupled with a public and private key. You may have seen this being used for your Github account at one point, also in SSH.
 * Service
   - Provider of information, data-source, or supplying use. Twitter is an example of a service.
 * Signature Method
@@ -119,7 +119,7 @@ Then on the service side they verify the public key that was generated along-sid
 
 #### OAuth Header
 
-The OAuth header is a part of the signed request, it contains the `oauth_signature` and `oauth_signature_method` parameters and their values. It is a single string and seperated generally by a comma (spaces are supported here by some services, stick to comma by default unless told otherwise by the service) and named `Authorization` with `OAuth` being the Bearer, in other flows this may change such as the OAuth Mac Bearer and other similiar methods.
+The OAuth header is a part of the signed request, it contains the `oauth_signature` and `oauth_signature_method` parameters and their values. It is a single string and separated generally by a comma (spaces are supported here by some services, stick to comma by default unless told otherwise by the service) and named `Authorization` with `OAuth` being the Bearer, in other flows this may change such as the OAuth Mac Bearer and other similar methods.
 
 The header itself is built up by all the `oauth_*` parameters sorted (by name, then some more [complex things](https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L111)). Here is an example taken from Twitter for getting a Request Token:
 
@@ -138,7 +138,7 @@ Authorization:
               oauth_version="1.0"
 ```
 
-The `oauth_callback` is what twitter will invoke or respond to when the authentication step happens, some services tell you they have successfully confirmed this information with a `oauth_callback_confirmed` token (This should be the defacto situation).
+The `oauth_callback` is what twitter will invoke or respond to when the authentication step happens, some services tell you they have successfully confirmed this information with a `oauth_callback_confirmed` token (This should be the de facto situation).
 
 Now, lets see the example response:
 
@@ -171,7 +171,7 @@ What is commonly known as two-legged is actually one legged, there is only one s
 
 **Note:** Google requires an unorthodox non-oauth parameter that must be added to the query string of the url you are 
 request called `xoauth_requester_id` [[R](https://developers.google.com/google-apps/gmail/oauth_protocol#oauth_request_url)] 
-this has also been depricated in favor of OAuth2.
+this has also been deprecated in favor of OAuth2.
 
 ***
 
@@ -266,7 +266,7 @@ This flow is the full experience, the grand finale, the whole shebang. It's the 
 
 ***
 
-The most secure OAuth implementation so far, yet a little more complicated seeing as the user is a part of the handshake and must interact with ui's during the transactions.
+The most secure OAuth implementation so far, yet a little more complicated seeing as the user is a part of the handshake and must interact with interfaces during the transactions.
 
 ## OAuth 1.0a (Echo)
 
@@ -339,7 +339,7 @@ OAuth2 three-legged cuts out a lot of clutter just like the two-legged, no longe
 
 ***
 
-**Fun Fact:** Scope by spec was to be space seperated (i.e. `user pull-request`) except companies like doing whatever they want like using comma to seperate scopes: `user,pull-request` so now we have tons of edge-cases
+**Fun Fact:** Scope by spec was to be space seperated (i.e. `user pull-request`) to which nobody followed and we are now left in a state of constant wonder as to what the next api we tackle uses.
 
 ***
 
@@ -369,7 +369,7 @@ https://oauth_service/login/oauth/authorize?client_id=3MVG9lKcPoNINVB&redirect_u
     - `access_token`
     - `expires_in`
     - `refresh_token`
-3. Application stores `access_token` to use in subsequent requests in various manners dependant on the Service.
+3. Application stores `access_token` to use in subsequent requests in various manners dependent on the Service.
     - Generally this value is stored in a session or cookie, and then placed into the request as an `Authorization: [Bearer] access_token` header string where `[Bearer]` is the Header Authorization Bearer Name it could be Bearer, OAuth, MAC, etc…
 
 
