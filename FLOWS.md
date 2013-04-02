@@ -123,7 +123,7 @@ The OAuth header is a part of the signed request, it contains the `oauth_signatu
 
 The header itself is built up by all the `oauth_*` parameters sorted (by name, then some more [complex things](https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L111)). Here is an example taken from Twitter for getting a Request Token:
 
-```
+```http
 POST /oauth/request_token HTTP/1.1
 User-Agent: themattharris' HTTP Client
 Host: api.twitter.com
@@ -142,7 +142,7 @@ The `oauth_callback` is what twitter will invoke or respond to when the authenti
 
 Now, lets see the example response:
 
-```
+```http
 HTTP/1.1 200 OK
 Date: Thu, 13 Oct 2011 00:57:06 GMT
 Status: 200 OK
