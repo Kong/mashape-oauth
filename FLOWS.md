@@ -434,6 +434,18 @@ If an expired token is used the Service will respond with a Session expired or I
    - `access_token`
    - `issued_at`
 
+## Tips & Tricks
+
+### Generating Access Token & Refresh Key
+
+Instead of encrypting information and using this as a sort of reversible string it's a lot more secure to simply utilize the same method of generation as the `nonce` string, a uuid. Randomly selected characters in a specific length.
+
+#### Example
+
+```javascript
+var OAuth = require('mashape-oauth').OAuth,
+    access_token = OAuth.nonce(/* Length, Default 32 */);
+```
 
 ## Sources
 
