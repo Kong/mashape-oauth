@@ -52,9 +52,9 @@ var oa = new OAuth({ /* … options … */ }, callback);
 oa.getOAuthRequestToken({ /* … parameters … */ }, callback);
 ```
 
-- parameters `{Object}` *Optional;* Additional Headers you might want to pass along.
-  - If omitted, you can treat parameters argument as callback and pass along a function as a single parameter.
-- callback `{Function}` Anonymous Function to be invoked upon response or failure.
+- `parameters` `Object` ___Optional___ *Additional Headers you might want to pass along.*
+  - *If omitted, you can treat parameters argument as callback and pass along a function as a single parameter.*
+- `callback` `Function` *Anonymous Function to be invoked upon response or failure.*
 
 
 ##### Example
@@ -75,13 +75,14 @@ oa.getOAuthRequestToken(function (error, oauth_token, oauth_token_secret, result
 oa.getOAuthAccessToken(options, callback);
 ```
 
-- options `{Object}`
-  - oauth_verifier `{String}` Verification code tied to the Request Token. [Section 2.3](http://tools.ietf.org/html/rfc5849#section-2.3)
-  - oauth_token `{String}` Request Token
-  - oauth_token_secret `{String}` Request Token Secret, used to help generation of signatures.
-  - parameters `{Object}` *Optional;* Additional headers to be sent along with request.
-  - callback `{Function}` *Optional;* Method to be invoked upon result, over-ridden by argument if set.
-- callback `{Function}` Method to be invoked upon result, over-rides options callback.
+- `options` `Object`
+  - `oauth_verifier` `String` *Verification code tied to the Request Token. [Section 2.3](http://tools.ietf.org/html/rfc5849#section-2.3)
+  - `oauth_token` `String` *Request Token*
+  - `oauth_token_secret` `String` *Request Token Secret, used to help generation of signatures.*
+  - `parameters` `Object` ___Optional___ *Additional headers to be sent along with request.*
+  - `callback` `Function` ___Optional___ *Method to be invoked upon result, over-ridden by argument if set.*
+- `callback` `Function` *Anonymous Function to be invoked upon response or failure, setting this overrides previously set callback inside options object.*
+
 
 ##### Example
 
