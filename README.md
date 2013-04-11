@@ -76,7 +76,7 @@ oa.getOAuthAccessToken(options, callback);
 ```
 
 - `options` `Object`
-  - `oauth_verifier` `String` *Verification code tied to the Request Token. [Section 2.3](http://tools.ietf.org/html/rfc5849#section-2.3)
+  - `oauth_verifier` `String` *Verification code tied to the Request Token. [Section 2.3](http://tools.ietf.org/html/rfc5849#section-2.3)*
   - `oauth_token` `String` *Request Token*
   - `oauth_token_secret` `String` *Request Token Secret, used to help generation of signatures.*
   - `parameters` `Object` ___Optional___ *Additional headers to be sent along with request.*
