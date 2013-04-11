@@ -27,28 +27,27 @@ Require the library and the one you wish to use.
 var OAuth = require('mashape-oauth').OAuth;
 var oa = new OAuth({ /* … options … */ }, callback);
 ```
-
-- options `{Object}` OAuth Request Options
-  - echo `{Object}` *Optional;* If it exists we treat the request as an echo request. See [Twitter](https://dev.twitter.com/docs/auth/oauth/oauth-echo).
-  - echo.verifyCredentials `{String}` What is the credentials URI to delegate against?
-  - realm `{String}` *Optional;* Access Authentication Framework Realm Value, Commonly used in Echo Requests, allowed in all however:
-  [Section 3.5.1](http://tools.ietf.org/html/rfc5849#section-3.5.1)
-  - requestUrl `{String}` Request Token URL, [Section 6.1](http://oauth.net/core/1.0/#auth_step1)
-  - accessUrl `{String}` Access Token URL, [Section 6.2](http://oauth.net/core/1.0/#auth_step2)
-  - callback `{String}` URL the Service Provider will use to redirect User back to Consumer after obtaining User Authorization has been completed.
-  [Section 6.2.1](http://oauth.net/core/1.0/#auth_step2)
-  - consumerKey `{String}` The Consumer Key
-  - consumerSecret `{String}` The Consumer Secret
-  - version `{String}` *Optional;* By spec this is `1.0` by default. [Section 6.3.1](http://oauth.net/core/1.0/#auth_step3)
-  - signatureMethod `{String}` Type of signature to generate, must be one of:
+- `options` `Object` *OAuth request options*
+  - `echo` `Object` ___Optional___ *If it exists we treat the request as OAuth Echo request.*
+   See [Twitter](https://dev.twitter.com/docs/auth/oauth/oauth-echo)
+      - `verifyCredentials` `String` *What is the credentials URI to delegate against?*
+  - `realm` `String` ___Optional___ *Access Authentication Framework Realm Value, Commonly used in Echo Requests, allowed in all however:*
+      [Section 3.5.1](http://tools.ietf.org/html/rfc5849#section-3.5.1)
+  - `requestUrl` `String` *Request Token URL* [Section 6.1](http://oauth.net/core/1.0/#auth_step1)
+  - `accessUrl` `String` *Access Token URL* [Section 6.2](http://oauth.net/core/1.0/#auth_step2)
+  - `callback` `String` *URL the Service Provider will use to redirect User back to Consumer after obtaining User Authorization has been completed.*
+      [Section 6.2.1](http://oauth.net/core/1.0/#auth_step2)
+  - `consumerKey` `String` *The Consumer Key*
+  - `consumerSecret` `String` *The Consumer Secret*
+  - `version` `String` ___Optional___ *By spec this is `1.0` by default.* [Section 6.3.1](http://oauth.net/core/1.0/#auth_step3)
+  - `signatureMethod` `String` *Type of signature to generate, must be one of:*
       - PLAINTEXT
       - RSA-SHA1
       - HMAC-SHA1
-  - nonceLength `{Number}` *Optional;* Length of nonce string. Default `32`
-  - headers `{Object}` *Optional;* Headers to be sent along with request, by default these are already set.
-  - clientOptions `{Object}` *Optional;* Contains `requestTokenHttpMethod` and `accessTokenHttpMethod` value.
-  - parameterSeperator `{String}` *Optional;* Seperator for OAuth header parameters, default is `,`
-- callback `{String}` *Optional;* callback uri, over-rides options callback.
+  - `nonceLength` `Number` ___Optional___ *Length of nonce string. Default `32`*
+  - `headers` `Object` ___Optional___ *Headers to be sent along with request, by default these are already set.*
+  - `clientOptions` `Object` ___Optional___ *Contains `requestTokenHttpMethod` and `accessTokenHttpMethod` value.*
+  - `parameterSeperator` `String` ___Optional___ *Seperator for OAuth header parameters. Default is `,`*
 
 #### getOAuthRequestToken() - Creating Request Token Call
 
@@ -65,7 +64,7 @@ oa.getOAuthRequestToken({ /* … parameters … */ }, callback);
 
 ```javascript
 oa.getOAuthRequestToken(function (error, oauth_token, oauth_token_secret, results) {
-  if (error) 
+  if (error)
     return res.send('Error getting OAuth Request Token: ' + error, 500);
   else
     // Usually a redirect happens here to the /oauth/authorize stage
@@ -79,7 +78,7 @@ oa.getOAuthRequestToken(function (error, oauth_token, oauth_token_secret, result
 oa.getOAuthAccessToken(options, callback);
 ```
 
-- options `{Object}` 
+- options `{Object}`
   - oauth_verifier `{String}` Verification code tied to the Request Token. [Section 2.3](http://tools.ietf.org/html/rfc5849#section-2.3)
   - oauth_token `{String}` Request Token
   - oauth_token_secret `{String}` Request Token Secret, used to help generation of signatures.
@@ -95,7 +94,7 @@ oa.getOAuthAccessToken({
   oauth_token: 'request_key',
   oauth_secret: 'request_secret'
 }, function (error, token, secret, result) {
-  if (error) 
+  if (error)
     return res.send('Error getting XAuth Access Token: ' + error, 500);
   else
     // Usually you want to store the token and secret in a session and make your requests after this
@@ -118,7 +117,7 @@ oa.getXAuthAccessToken(username, password, callback);
 
 ```javascript
 oa.getXAuthAccessToken('nijikokun', 'abc123', function (error, oauth_token, oauth_token_secret, results) {
-  if (error) 
+  if (error)
     return res.send('Error getting XAuth Access Token: ' + error, 500);
   else
     // Usually you want to store the token and secret in a session and make your requests after this
