@@ -28,18 +28,15 @@ var OAuth = require('mashape-oauth').OAuth;
 var oa = new OAuth({ /* … options … */ }, callback);
 ```
 - `options` `Object` *OAuth request options*
-  - `echo` `Object` ___Optional___ *If it exists we treat the request as OAuth Echo request.*
-   See [Twitter](https://dev.twitter.com/docs/auth/oauth/oauth-echo)
+  - `echo` `Object` ___Optional___ *If it exists we treat the request as OAuth Echo request. See [Twitter](https://dev.twitter.com/docs/auth/oauth/oauth-echo)*
       - `verifyCredentials` `String` *What is the credentials URI to delegate against?*
-  - `realm` `String` ___Optional___ *Access Authentication Framework Realm Value, Commonly used in Echo Requests, allowed in all however:*
-      [Section 3.5.1](http://tools.ietf.org/html/rfc5849#section-3.5.1)
-  - `requestUrl` `String` *Request Token URL* [Section 6.1](http://oauth.net/core/1.0/#auth_step1)
-  - `accessUrl` `String` *Access Token URL* [Section 6.2](http://oauth.net/core/1.0/#auth_step2)
-  - `callback` `String` *URL the Service Provider will use to redirect User back to Consumer after obtaining User Authorization has been completed.*
-      [Section 6.2.1](http://oauth.net/core/1.0/#auth_step2)
+  - `realm` `String` ___Optional___ *Access Authentication Framework Realm Value, Commonly used in Echo Requests, allowed in all however: [Section 3.5.1](http://tools.ietf.org/html/rfc5849#section-3.5.1)*
+  - `requestUrl` `String` *Request Token URL. [Section 6.1](http://oauth.net/core/1.0/#auth_step1)*
+  - `accessUrl` `String` *Access Token URL. [Section 6.2](http://oauth.net/core/1.0/#auth_step2)*
+  - `callback` `String` *URL the Service Provider will use to redirect User back to Consumer after obtaining User Authorization has been completed. [Section 6.2.1](http://oauth.net/core/1.0/#auth_step2)*
   - `consumerKey` `String` *The Consumer Key*
   - `consumerSecret` `String` *The Consumer Secret*
-  - `version` `String` ___Optional___ *By spec this is `1.0` by default.* [Section 6.3.1](http://oauth.net/core/1.0/#auth_step3)
+  - `version` `String` ___Optional___ *By spec this is `1.0` by default. [Section 6.3.1](http://oauth.net/core/1.0/#auth_step3)*
   - `signatureMethod` `String` *Type of signature to generate, must be one of:*
       - PLAINTEXT
       - RSA-SHA1
