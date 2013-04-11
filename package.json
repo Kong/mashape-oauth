@@ -1,6 +1,6 @@
 {
   "name": "mashape-oauth",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Library for handling OAuth (1.0a, Echo, XAuth, and 2.0) Requests and Responses",
   "main": "index.js",
   "directories": {
