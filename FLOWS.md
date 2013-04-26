@@ -361,16 +361,28 @@ Authorization: Basic Base64(client_id:client_secret)
 
 Basically OAuth 1.0a Echo… without the signing and complications. Let's do this.
 
-1. Owner delegates credentials to Application for Service
-2. Application makes request to Service using credentials:
+1. Application request credentials, *shown below*, from resource owner (also known as the user).
+    - `username`
+    - `password`
+2. Application makes request to Service using the given credentials as a query string for the body:
     - `grant_type` = `password`
     - `username`
     - `password`
     
-    If you aren't using `Authorization` header:
+    It should look like this:
+    ```
+grant_type=password&username=my_username&password=my_password
+```
+    
+    If you aren't using the `Authorization` header, these must be passed as well:
     - `client_id`
     - `client_secret`
-3. Service responds with Access Token:
+    
+    Which would become:
+    ```
+grant_type=password&username=my_username&password=my_password&client_id=random_string&client_secret=random_secret
+```
+3. Service responds with Access Token details and expiration information:
     - `access_token`
     - `expires_in`
     - `token_type`
