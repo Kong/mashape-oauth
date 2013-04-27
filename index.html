@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Mashape-oauth by Mashape</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Mashape-oauth</h1>
+        <p>OAuth Modules for Node.js - Supporting RSA, HMAC, PLAINTEXT, 2,3-Legged, 1.0a, Echo, XAuth, and 2.0</p>
+
+        <p class="view"><a href="https://github.com/Mashape/mashape-oauth">View the Project on GitHub <small>Mashape/mashape-oauth</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Mashape/mashape-oauth/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Mashape/mashape-oauth/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Mashape/mashape-oauth">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Mashape OAuth</h1>
+
+<p>OAuth Modules for Node.js - Supporting RSA, HMAC, PLAINTEXT, 2,3-Legged, 1.0a, Echo, XAuth, and 2.0</p>
+
+<h1>Installation</h1>
+
+<pre><code>npm install mashape-oauth
+</code></pre>
+
+<h1>Usage</h1>
+
+<p>Require the library and the one you wish to use.</p>
+
+<ol>
+<li>
+<a href="#using-oauth-1x-xauth-echo">OAuth</a>
+
+<ol>
+<li><a href="#getoauthrequesttoken---creating-request-token-call">getOAuthRequestToken</a></li>
+<li><a href="#getoauthaccesstoken---creating-oauth-access-token-call">getOAuthAccessToken</a></li>
+<li><a href="#getxauthaccesstoken---creating-xauth-access-token-call">getXAuthAccessToken</a></li>
+<li><a href="#request-methods">Request Methods</a></li>
+</ol>
+</li>
+<li><a href="#using-oauth2">OAuth2</a></li>
+</ol><hr><h3>Using OAuth (1.x, XAuth, Echo):</h3>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">OAuth</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mashape-oauth'</span><span class="p">).</span><span class="nx">OAuth</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">oa</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OAuth</span><span class="p">({</span> <span class="cm">/* … options … */</span> <span class="p">},</span> <span class="nx">callback</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>
+<code>options</code> <code>Object</code> <em>OAuth request options</em>
+
+<ul>
+<li>
+<code>echo</code> <code>Object</code> <strong><em>Optional</em></strong> <em>If it exists we treat the request as OAuth Echo request. See <a href="https://dev.twitter.com/docs/auth/oauth/oauth-echo">Twitter</a></em>
+
+<ul>
+<li>
+<code>verifyCredentials</code> <code>String</code> <em>What is the credentials URI to delegate against?</em>
+</li>
+</ul>
+</li>
+<li>
+<code>realm</code> <code>String</code> <strong><em>Optional</em></strong> <em>Access Authentication Framework Realm Value, Commonly used in Echo Requests, allowed in all however: <a href="http://tools.ietf.org/html/rfc5849#section-3.5.1">Section 3.5.1</a></em>
+</li>
+<li>
+<code>requestUrl</code> <code>String</code> <em>Request Token URL. <a href="http://oauth.net/core/1.0/#auth_step1">Section 6.1</a></em>
+</li>
+<li>
+<code>accessUrl</code> <code>String</code> <em>Access Token URL. <a href="http://oauth.net/core/1.0/#auth_step2">Section 6.2</a></em>
+</li>
+<li>
+<code>callback</code> <code>String</code> <em>URL the Service Provider will use to redirect User back to Consumer after obtaining User Authorization has been completed. <a href="http://oauth.net/core/1.0/#auth_step2">Section 6.2.1</a></em>
+</li>
+<li>
+<code>consumerKey</code> <code>String</code> <em>The Consumer Key</em>
+</li>
+<li>
+<code>consumerSecret</code> <code>String</code> <em>The Consumer Secret</em>
+</li>
+<li>
+<code>version</code> <code>String</code> <strong><em>Optional</em></strong> <em>By spec this is <code>1.0</code> by default. <a href="http://oauth.net/core/1.0/#auth_step3">Section 6.3.1</a></em>
+</li>
+<li>
+<code>signatureMethod</code> <code>String</code> <em>Type of signature to generate, must be one of:</em>
+
+<ul>
+<li>PLAINTEXT</li>
+<li>RSA-SHA1</li>
+<li>HMAC-SHA1</li>
+</ul>
+</li>
+<li>
+<code>nonceLength</code> <code>Number</code> <strong><em>Optional</em></strong> <em>Length of nonce string. Default <code>32</code></em>
+</li>
+<li>
+<code>headers</code> <code>Object</code> <strong><em>Optional</em></strong> <em>Headers to be sent along with request, by default these are already set.</em>
+</li>
+<li>
+<code>clientOptions</code> <code>Object</code> <strong><em>Optional</em></strong> <em>Contains <code>requestTokenHttpMethod</code> and <code>accessTokenHttpMethod</code> value.</em>
+</li>
+<li>
+<code>parameterSeperator</code> <code>String</code> <strong><em>Optional</em></strong> <em>Seperator for OAuth header parameters. Default is <code>,</code></em>
+</li>
+</ul>
+</li>
+</ul><h4>getOAuthRequestToken() - Creating Request Token Call</h4>
+
+<div class="highlight"><pre><span class="nx">oa</span><span class="p">.</span><span class="nx">getOAuthRequestToken</span><span class="p">({</span> <span class="cm">/* … parameters … */</span> <span class="p">},</span> <span class="nx">callback</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>
+<code>parameters</code> <code>Object</code> <strong><em>Optional</em></strong> <em>Additional Headers you might want to pass along.</em>
+
+<ul>
+<li><em>If omitted, you can treat parameters argument as callback and pass along a function as a single parameter.</em></li>
+</ul>
+</li>
+<li>
+<code>callback</code> <code>Function</code> <em>Anonymous Function to be invoked upon response or failure.</em>
+</li>
+</ul><h5>Example</h5>
+
+<div class="highlight"><pre><span class="nx">oa</span><span class="p">.</span><span class="nx">getOAuthRequestToken</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">oauth_token</span><span class="p">,</span> <span class="nx">oauth_token_secret</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Error getting OAuth Request Token: '</span> <span class="o">+</span> <span class="nx">error</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="c1">// Usually a redirect happens here to the /oauth/authorize stage</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Successfully Obtained Token &amp; Secret: '</span> <span class="o">+</span> <span class="nx">oauth_token</span> <span class="o">+</span> <span class="s1">' &amp; '</span> <span class="o">+</span> <span class="nx">oauth_token_secret</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<h4>getOAuthAccessToken() - Creating OAuth Access Token Call</h4>
+
+<div class="highlight"><pre><span class="nx">oa</span><span class="p">.</span><span class="nx">getOAuthAccessToken</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>
+<code>options</code> <code>Object</code>
+
+<ul>
+<li>
+<code>oauth_verifier</code> <code>String</code> <em>Verification code tied to the Request Token. <a href="http://tools.ietf.org/html/rfc5849#section-2.3">Section 2.3</a></em>
+</li>
+<li>
+<code>oauth_token</code> <code>String</code> <em>Request Token</em>
+</li>
+<li>
+<code>oauth_token_secret</code> <code>String</code> <em>Request Token Secret, used to help generation of signatures.</em>
+</li>
+<li>
+<code>parameters</code> <code>Object</code> <strong><em>Optional</em></strong> <em>Additional headers to be sent along with request.</em>
+</li>
+<li>
+<code>callback</code> <code>Function</code> <strong><em>Optional</em></strong> <em>Method to be invoked upon result, over-ridden by argument if set.</em>
+</li>
+</ul>
+</li>
+<li>
+<code>callback</code> <code>Function</code> <em>Anonymous Function to be invoked upon response or failure, setting this overrides previously set callback inside options object.</em>
+</li>
+</ul><h5>Example</h5>
+
+<div class="highlight"><pre><span class="nx">oa</span><span class="p">.</span><span class="nx">getOAuthAccessToken</span><span class="p">({</span>
+  <span class="nx">oauth_verifier</span><span class="o">:</span> <span class="s1">'ssid39b'</span><span class="p">,</span>
+  <span class="nx">oauth_token</span><span class="o">:</span> <span class="s1">'request_key'</span><span class="p">,</span>
+  <span class="nx">oauth_secret</span><span class="o">:</span> <span class="s1">'request_secret'</span>
+<span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">token</span><span class="p">,</span> <span class="nx">secret</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Error getting XAuth Access Token: '</span> <span class="o">+</span> <span class="nx">error</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="c1">// Usually you want to store the token and secret in a session and make your requests after this</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Successfully Obtained Token &amp; Secret: '</span> <span class="o">+</span> <span class="nx">oauth_token</span> <span class="o">+</span> <span class="s1">' &amp; '</span> <span class="o">+</span> <span class="nx">oauth_token_secret</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<h4>getXAuthAccessToken() - Creating XAuth Access Token Call</h4>
+
+<div class="highlight"><pre><span class="nx">oa</span><span class="p">.</span><span class="nx">getXAuthAccessToken</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>username <code>{String}</code> XAuth Username credentials of User obtaining a token on behalf of</li>
+<li>password <code>{String}</code> XAuth Password credentials of User obtaining a token on behalf of</li>
+<li>callback <code>{Function}</code> Anonymous Function to be invoked upon response or failure.</li>
+</ul><h5>Example</h5>
+
+<div class="highlight"><pre><span class="nx">oa</span><span class="p">.</span><span class="nx">getXAuthAccessToken</span><span class="p">(</span><span class="s1">'nijikokun'</span><span class="p">,</span> <span class="s1">'abc123'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">oauth_token</span><span class="p">,</span> <span class="nx">oauth_token_secret</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Error getting XAuth Access Token: '</span> <span class="o">+</span> <span class="nx">error</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="c1">// Usually you want to store the token and secret in a session and make your requests after this</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">'Successfully Obtained Token &amp; Secret: '</span> <span class="o">+</span> <span class="nx">oauth_token</span> <span class="o">+</span> <span class="s1">' &amp; '</span> <span class="o">+</span> <span class="nx">oauth_token_secret</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<h4>Request Methods</h4>
+
+<div class="highlight"><pre><span class="nx">oa</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+<span class="nx">oa</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+<span class="nx">oa</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+<span class="nx">oa</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+<span class="nx">oa</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+
+<span class="c1">// Alternatively, you can use the old node-oauth style: (Where method is one of five above.)</span>
+<span class="nx">oa</span><span class="p">.</span><span class="nx">method</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">oauth_token</span><span class="p">,</span> <span class="nx">oauth_token_secret</span><span class="p">,</span> <span class="nx">body</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>options <code>{Object}</code> Contains Request Information
+
+<ul>
+<li>url <code>{String}</code> URL to be requested upon</li>
+<li>oauth_token <code>{String}</code> <em>Optional;</em> Dependant upon request step, could be access, or request token.</li>
+<li>oauth_token_secret <code>{String}</code> <em>Optional;</em> Dependant upon request step</li>
+<li>body <code>{String}</code> <em>Optional;</em> Body information to be sent along with request.</li>
+<li>type <code>{String}</code> <em>Optional;</em> Content Request Type</li>
+<li>parameters <code>{Object}</code> <em>Optional;</em> Additional headers you wish to pass along with your request.</li>
+<li>callback <code>{Function}</code> <em>Optional;</em> Method to be invoked upon result, over-ridden by argument if set.</li>
+</ul>
+</li>
+<li>callback <code>{Function}</code> Method to be invoked upon result, over-rides options callback.</li>
+</ul><hr><h3>Using OAuth2:</h3>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">OAuth2</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mashape-oauth'</span><span class="p">).</span><span class="nx">OAuth2</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">oa</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OAuth2</span><span class="p">({</span> <span class="cm">/* … options … */</span> <span class="p">},</span> <span class="nx">callback</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>options <code>{Object}</code> OAuth Request Options
+
+<ul>
+<li>clientId <code>{String}</code> Client Identifier</li>
+<li>clientSecret <code>{String}</code> Client Secret</li>
+<li>baseUrl <code>{String}</code> Base url of OAuth request</li>
+<li>authorizationUrl <code>{String}</code> <em>Optional;</em> Authorization endpoint, default is <code>/oauth/authorize</code>
+</li>
+<li>authorizationMethod <code>{String}</code> <em>Optional;</em> Authorization Header Method, default is <code>Bearer</code>
+</li>
+<li>accessTokenUrl <code>{String}</code> <em>Optional;</em> Access Token Endpoint, default is <code>/oauth/access_token</code>
+</li>
+<li>accessTokenName <code>{String}</code> <em>Optional;</em> Access Token Parameter Name, default is <code>access_token</code>
+</li>
+<li>headers <code>{Object}</code> <em>Optional;</em> Custom headers we wish to pass along</li>
+</ul>
+</li>
+</ul><hr>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Mashape">Mashape</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
