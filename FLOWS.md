@@ -408,7 +408,7 @@ OAuth2 three-legged cuts out a lot of clutter just like the two-legged, no longe
     Example Authorization URL (Not-Encoded for Readability):
     
     ```
-https://oauth_service/login/oauth/authorize?client_id=3MVG9lKcPoNINVB&redirect_url=http://localhost/oauth/code_callback&scope=user
+https://oauth_service/login/oauth/authorize?client_id=3MVG9lKcPoNINVB&redirect_uri=http://localhost/oauth/code_callback&scope=user
     ```
 2. User logs into the Service and grants Application access.
 3. Service redirects User back to the `redirect_url` with:
@@ -420,7 +420,7 @@ https://oauth_service/login/oauth/authorize?client_id=3MVG9lKcPoNINVB&redirect_u
     - `code`
     - `redirect_uri` *Optional;* see [[20, 4.1.3]](http://tools.ietf.org/html/rfc6749#section-4.1.3)
     - `grant_type` = `"authorization_code"` [[20, 4.1.3]](http://tools.ietf.org/html/rfc6749#section-4.1.3)
-2. If `client_id` and `client_secret`* are valid the Service will invoke a callback on `redirect_url` that contains an `access_token`:
+2. If `client_id` and `client_secret` are valid the Service will invoke a callback on `redirect_url` that contains an `access_token`:
     - `access_token`
     - `expires_in`
     - `refresh_token`
