@@ -58,11 +58,9 @@ I tried to make this as understandable as possible for any party reading it whic
 
 > This section is in regards to OAuth 1.0
 
-Signing requests is more than just the signature so in this section we will look at how the signature process should be handled and how each parameter should be used with references to flows.
+Signing requests is more than just the signature so in this section we will look at how the signature process should be handled and how each parameter should be used with references to flows. When signing requests the Application takes all the information it has been given, gathered, or generated, and places it in a single location. There are two ways of transporting this information, through the `OAuth` header or the `Query` string.
 
-In this step the Application takes all the information it has gathered and generated and places it in a single location. There are two ways of transporting this information, through the `OAuth` header or `Query` string.
-
-On the first leg of generating such a string we must collect all the required parameters and their values, some of these are used inside of the string directly and others in-directly through the encryption or encoding of the signature.
+Before we can generate this string we must gather all the required parameters and their values, some of these are used inside of the string directly and others in-directly through the encryption or encoding of the signature.
 
 #### Signature Base String
 
