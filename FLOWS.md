@@ -22,7 +22,9 @@ I tried to make this as understandable as possible for any party reading it whic
 ## Terminology / Reference
 
 * Signed / Signature
-  - This is usually a joined string of (the base) `Request Method` `&` `URL Query` `&` `Parameters (Sorted & Encoded)` and then encrypted against the key (`consumer_secret` `&` `token_secret`) for the final signature. In some cases this may be the **key**, Plaintext, or may use simply the `consumer_secret`, RSA.
+  - String made up of several HTTP request elements in a single string.
+
+  These include the `Request Method` `&` `URL Query` `&` `Parameters`, which is then encrypted against the key which consists of: (`consumer_secret` `&` `token_secret`). In some cases this may be the key, plaintext, or may use simply the `consumer_secret`, for RSA encryption.
 * Consumer Secret
   - Usually given by application as a secret token for starting the OAuth handshakes.
 * Consumer Key
@@ -34,7 +36,7 @@ I tried to make this as understandable as possible for any party reading it whic
 * OAuth Token Secret
   - This is a secret generally sent with the response for a certain token. Used for exchanges / refreshing.
 * Query
-  - URL Query String `?query=looks&like=this`
+  - Part of the URL that contains key-value data invoked by the `?` symbol, the keys and values are seperated by the `=` sign and each data-store is seperated by the `&` symbol: `?query=looks&like=this`
 * Parameter / Argument
   - These are snippets of information that have a name reference such as `oauth_token="helloWorld"` where `oauth_token` is the parameter or argument and `helloWorld` is the value.
 * Plaintext
@@ -54,15 +56,11 @@ I tried to make this as understandable as possible for any party reading it whic
   
 ### Signed Requests
 
-Signing a requests is more than just the signature step, it also includes either the header or query creation step. In this step the Application takes all the information it has gathered and generated and places in a single string.
+> This section is in regards to OAuth 1.0
 
-Some requests will use the `OAuth` header for this, and others will use another which is the URL Query. In this section, we will look at how the signature process should be handled and how each parameter should be used with references to flows.
+Signing requests is more than just the signature, it also includes either the header or query creation step. In this section, we will look at how the signature process should be handled and how each parameter should be used with references to flows.
 
-***
-
-**Note:** This section is in regards to OAuth 1.0
-
-***
+In this step the Application takes all the information it has gathered and generated and places in a single location. There are two seperate methods for transporting this information, the `OAuth` header or through the `URL Query` string.
 
 On the first leg of generating such a string we must collect all the required parameters and their values, some of these are used inside of the string directly and others in-directly through the encryption or encoding of the signature.
 
