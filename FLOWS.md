@@ -157,7 +157,7 @@ oauth_callback_confirmed=true
 
 Great, `200` response with the `oauth_token`, `oauth_token_secret` and `oauth_callback_confirmed` parameters. This is perfect, now you can use the `oauth_token_secret` for creating your signature for the access token and `oauth_token` for authenticating the request.
 
-Generally, the `oauth_token` will be sent along as a query parameter `?oauth_token=[token goes here]` on the authenticate endpoint if we were doing a three-legged OAuth 1.0a request which should give you back the `oauth_token` and `oauth_verifier` which then are used as well in your  Access Token request [[19]](https://dev.twitter.com/docs/auth/implementing-sign-twitter).
+Generally, the `oauth_token` will be sent along as a query parameter `?oauth_token=[token goes here]` on the authenticate endpoint when doing a `3-Legged OAuth 1.0a` request which should give you back the `oauth_token` and `oauth_verifier` which then are used as well in your  Access Token request [[19]](https://dev.twitter.com/docs/auth/implementing-sign-twitter).
 
 ## OAuth 1.0a (one-legged)
 
