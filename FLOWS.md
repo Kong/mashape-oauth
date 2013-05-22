@@ -64,7 +64,7 @@ Before we can generate this string we must gather all the required parameters an
 
 #### Signature Base String
 
-Gathering the `Method` of the request, the `URL` of the request (or in the case of Echo the verifying credentials URL) and the `Query String` joined together by the `&` character would look like this raw (taken from [this](https://dev.twitter.com/docs/auth/creating-signature) twitter page):
+Gathering the `Method` of the request, the `URL` of the request (or in the case of `OAuth Echo` the verifying credentials uri) and the `Query String` joined together by the `&` symbol would look like this without encryption (example from [twitter](https://dev.twitter.com/docs/auth/creating-signature)):
 
 ```
 POST&https%3A%2F%2Fapi.twitter.com%2F1%2Fstatuses%2Fupdate.json&include_entities%3Dtrue%26oauth_consumer_key%3Dxvz1evFS4wEEPTGEFPHBog%26oauth_nonce%3DkYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1318622958%26oauth_token%3D370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb%26oauth_version%3D1.0%26status%3DHello%2520Ladies%2520%252B%2520Gentlemen%252C%2520a%2520signed%2520OAuth%2520request%2521
@@ -72,11 +72,11 @@ POST&https%3A%2F%2Fapi.twitter.com%2F1%2Fstatuses%2Fupdate.json&include_entities
 
 ##### Signing Key
 
-Which is then encoded against a *signing key* which in some flows is different than others but is always a joining of the OAuth `Consumer Secret` and `Token Secret` once again by the `&` character like so:
+The `signature base` string is then encrypted with a salt called the *signing key* which is a joining of the OAuth `Consumer Secret` and `Token Secret` once again by the `&` character like so:
 
 ***
 
-**Note:** Sometimes in case of RSA and xAuth the signing key may only be the `Consumer Secret` with an `&` appended or not. For more insights check out lines [180](https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L180) & [186](https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L186) of mashape-oauth/lib/oauth.js
+**Note:** Sometimes in case of RSA and xAuth the signing key may only be the `Consumer Secret` with an `&` symbol appended or not. For more insights check out lines [233](https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L233) & [238](https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L238) of mashape-oauth/lib/oauth.js
 
 ***
 
