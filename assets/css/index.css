@@ -91,9 +91,27 @@ ul.nostyle li,
 ol.nostyle li {
   list-style: none;
 }
+ul.inline,
+ol.inline {
+  padding: 0;
+  margin: 0;
+}
+ul.inline li,
+ol.inline li {
+  float: left;
+  margin-left: 10px;
+}
 ul.padded,
 ol.padded {
   padding: 0 2em 1em;
+}
+ul.nav,
+ol.nav {
+  font-size: 12px;
+}
+ul.nav li a,
+ol.nav li a {
+  text-transform: uppercase;
 }
 ul.definition > li,
 ol.definition > li {
@@ -133,6 +151,15 @@ header h1 {
   text-align: center;
   text-transform: lowercase;
   font-variant: small-caps;
+}
+header h3 {
+  text-align: center;
+  line-height: 0;
+  padding: 0;
+  margin: -1em 0 1em 0;
+  font-style: italic;
+  color: #CECFD0;
+  font-weight: 300;
 }
 /* Pieces */
 .foreword {
@@ -188,8 +215,13 @@ header h1 {
 .container {
   width: 960px;
   margin: 0 auto 1em;
+}
+.container.rounded {
   background: white;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.container.slim {
+  margin-bottom: .5em;
 }
 .container > .seperator {
   border-bottom: 1px solid #eff2f4;
