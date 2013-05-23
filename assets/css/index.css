@@ -214,11 +214,12 @@ header h3 {
 /* Page Styles */
 .container {
   width: 960px;
-  margin: 0 auto 1em;
+  margin: 0 auto;
 }
 .container.rounded {
   background: white;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 3px 3px 0 0;
 }
 .container.slim {
   margin-bottom: .5em;
@@ -253,6 +254,10 @@ header h3 {
 .seperator.skyblue h3 {
   color: #FEFEFE;
 }
+.seperator.skyblue pre,
+.seperator.skyblue pre code {
+  color: #292B2A;
+}
 .seperator.bloodorange {
   background: #e66401;
   color: #FEFEFE;
@@ -266,6 +271,10 @@ header h3 {
 }
 .seperator.bloodorange a {
   color: #FEAB1E;
+}
+.seperator.bloodorange pre,
+.seperator.bloodorange pre code {
+  color: #292B2A;
 }
 .seperator.junglegreen {
   background: #8BB847;

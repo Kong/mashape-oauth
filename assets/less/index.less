@@ -246,11 +246,12 @@ header {
 /* Page Styles */
 .container {
   width: 960px;
-  margin: 0 auto 1em;
+  margin: 0 auto;
 
   &.rounded {
     background: white;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    border-radius: 3px 3px 0 0;
   }
 
   &.slim {
@@ -288,6 +289,10 @@ header {
     *, h1, h2, h3 {
       color: #FEFEFE;
     }
+
+    pre, pre code {
+      color: #292B2A;
+    }
   }
   
   &.bloodorange {
@@ -301,6 +306,10 @@ header {
 
     a {
       color: #FEAB1E;
+    }
+
+    pre, pre code {
+      color: #292B2A;
     }
   }
   
