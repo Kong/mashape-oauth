@@ -55,7 +55,7 @@ pre code {
 }
 pre::-webkit-scrollbar {
   width: 12px;
-  height: 5px;
+  height: 6px;
 }
 pre::-webkit-scrollbar-track {
   background: #F2F5F8;
@@ -113,6 +113,15 @@ ul > p,
 ol > p {
   padding: 1em 0 0 0;
   margin-left: -1.3em;
+}
+ul > pre,
+ol > pre {
+  margin-left: -1.3em;
+}
+ul li pre,
+ol li pre {
+  margin-top: .8em;
+  margin-left: -5em;
 }
 header {
   padding: 20px;
@@ -187,6 +196,7 @@ header h1 {
 }
 .container > .seperator:last-child {
   border-bottom: none;
+  padding-bottom: .1em;
 }
 .seperator.blockquote {
   background: #E6F0F5;

@@ -63,7 +63,7 @@ pre {
 
   &::-webkit-scrollbar {
     width: 12px;
-    height: 5px;
+    height: 6px;
   }
  
   &::-webkit-scrollbar-track {
@@ -127,6 +127,17 @@ ul, ol {
   > p {
     padding: 1em 0 0 0;
     margin-left: -1.3em;
+  }
+
+  > pre {
+    margin-left: -1.3em;
+  }
+
+  li {
+    pre {
+      margin-top: .8em;
+      margin-left: -5em;
+    }
   }
 }
 
@@ -215,6 +226,7 @@ header {
 
     &:last-child {
       border-bottom: none;
+      padding-bottom: .1em;
     }
   }
 }
