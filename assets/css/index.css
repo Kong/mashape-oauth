@@ -11,7 +11,7 @@ body {
   line-height: 1.7em;
   background: #eff2f4;
   color: #7b7e85;
-  margin: 20px 0 0 0;
+  margin: 0 0 0 0;
 }
 [data-title] {
   cursor: pointer;
@@ -142,7 +142,7 @@ ol li pre {
   margin-left: -5em;
 }
 header {
-  padding: 20px;
+  padding: 40px 0 80px 0;
   background: url('http://puu.sh/2LLlN.png') no-repeat 99% 0;
 }
 header h1 {
@@ -161,6 +161,12 @@ header h3 {
   color: #CECFD0;
   font-weight: 300;
 }
+
+.content {
+  position: relative;
+  top: 75px;
+}
+
 /* Pieces */
 .foreword {
   font-style: italic;
@@ -365,4 +371,75 @@ header h3 {
   border-width: 8px;
   left: 50%;
   margin-left: -8px;
+}
+
+
+
+.header{
+    padding:25px 25px;
+    padding-bottom:9px; 
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 12px;
+    background: rgba(0,0,0,.9);
+}
+
+.header li.active {
+  border-bottom: 3px solid #9ac96f;
+}
+
+#logo{
+    float:left;
+}
+
+#logo img {
+  height:35px;
+}
+
+/*Navigation*/
+#navigation{
+    float:left;
+    margin-top:5px;
+    margin-left:30px;
+    padding-left:30px;
+    list-style:none;
+}             
+
+#navigation li{
+    float:left;
+    margin-right:40px;
+    line-height: 1.7;
+
+}
+
+#navigation li a{
+    text-transform:uppercase;
+    text-decoration: none;
+    font-size:12px;  
+    color:#d5dae1;
+}
+
+#navigation li a:hover{color:#fff;}
+
+/*Social Links*/
+#social{
+    float: right;
+    list-style:none;
+    padding: 0;
+    margin: 4px 0 0 0;
+}
+
+#social li{
+    float:left;
+    margin-left:10px;
+}
+
+#social li a{
+    opacity:.5;
+}
+
+#social li a:hover{
+    opacity:1;
 }

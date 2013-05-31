@@ -8,24 +8,31 @@
   </head>
 <body>
 
-  <section class="container slim">
-    <ul class="pull-right nostyle inline nav">
-      <li>From <a href="https://mashape.com">Mashape</a></li>
-      <li>&</li>
-      <li>On <a href="https://github.com/Mashape/mashape-oauth/">Github</a></li>
-    </ul>
+  <section class="header">
+    <div class=" container slim">
+      <!-- Logo -->
+      <a href="https://mashape.com/" id="logo"><img src="https://www.mashape.com/public/mashape_logo.png" width="145" height="35" alt="Logo"></a>
+      <!-- Navigation -->
+      <ul id="navigation">
+        <li><a href="http://blog.mashape.com/">Blog</a></li>
+        <li class="active"><a href="http://oauthbible.com/">OAuth Bible</a></li>
+        <li><a href="http://unirest.io">Unirest</a></li>
+      </ul>
 
-    <ul class="nostyle inline nav">
-      <li>Copyright 2013</li>
-    </ul>
+      <ul id="social">
+           <li><a href="http://www.twitter.com/mashape" id="twitter"><img src="http://static.tumblr.com/vbjnszm/Jpnmcbmpz/twitter.png" alt="Twitter"></a></li> 
+           <li><a href="https://github.com/mashape" id="github"><img src="http://static.tumblr.com/vbjnszm/gdAmccpnu/github.png" alt="Github"></a></li>   
+           <li><a href="https://facebook.com/mashape" id="facebook"><img src="http://static.tumblr.com/gtdjnrz/lbemlstyq/f-logo.png" alt="Mashape Facebook"></a></li>   
+      </ul>
+    </div>
 
     <div class="clear"></div>
   </section>
   
-  <section class="container rounded">
+  <section class="content container rounded">
     <header>
       <h1>The OAuth Bible</h1>
-      <h3>By Author Nijiko Yonskai</h3>
+      <h3>By <a href="http://twitter.com/nijikokun">@Nijikokun</a></h3>
     </header>
     
     <section class="seperator foreword bloodorange">
@@ -36,7 +43,7 @@
       <ol>
         <li><h4>Reference</h4>
           <ol>
-            <li page="1"><a href="#terminology--reference">Terminology</a></li>
+            <li page="1"><a href="#terminology-reference">Terminology</a></li>
             <li page="5"><a href="#signed-requests">Signed Requests</a></li>
             <li page="50"><a href="#sources">Sources</a></li>
           </ol>
@@ -61,7 +68,7 @@
       <div class="clear"></div>
     </nav>
     
-    <section class="seperator offwhite">
+    <section class="seperator offwhite" id="terminology-reference">
       <h1>Terminology / Reference</h1>
       
       <ul class="nostyle padded definition">
@@ -609,7 +616,7 @@ oauth_callback_confirmed=true</pre>
       </ol>
     </section>
 
-    <section class="seperator" id="#oauth-2-refresh-token">
+    <section class="seperator" id="oauth-2-refresh-token">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 2 (Refresh Token)
       </h1>
@@ -690,6 +697,13 @@ oauth_callback_confirmed=true</pre>
     $('[data-title]').each(function () {
       $(this).justTheTip().arrow(11).pos('top').attr(['data-title']);
     });
+
+    $('a[href*=#]').click(function(){
+      console.log();
+      $('body').scrollTop($($(this).attr('href')).offset().top - 75);
+      return false;
+    });
+
   </script>
 
   <script type="text/javascript">
