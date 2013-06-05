@@ -16,7 +16,7 @@ npm install mashape-oauth
 - Supports Plaintext, HMAC-SHA1, and RSA encryption for 1.0a
 - Object based parameter system and supports chaining
 - Code has been refactored to be more performant in loops, whiles, and callback structures.
-- Intuitive method naming, small footprint, and tested against test suites as well as hundres of APIs.
+- Intuitive method naming, small footprint, and tested against test suites as well as hundreds of APIs.
 
 # Usage
 
