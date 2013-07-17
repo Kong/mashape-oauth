@@ -518,6 +518,37 @@ oauth_callback_confirmed=true</pre>
         </li>
       </ol>
 
+
+      <h3>Implicit Grant</h3>
+
+      <p>You will notice that we don't send the secret, this is actually the correct way of sending information; However, like all the other parts of OAuth there are services that don't follow this paradigm so in some cases it may be required. Also, the header should not be used in this case, and once again some services may completely ignore the specifications. Make sure to check the documentation of the service before assuming.</p>
+
+      <ol>
+        <li>Application makes request to Service:
+          <ul>
+            <li><code>response_type</code> = <code>token</code></li>
+            <li><code>redirect_uri</code> This is a server-side Redirection URI hosted by the provider or yourself.</li>
+            <li><code>scope</code></li>
+            <li><code>state</code> <em>Optional</em></li>
+            <li><code>client_id</code></li> 
+          </ul>
+        </li>
+        <li>User may need to authorize, this is not required, but we will assume they are granting access.
+          <ul>
+            <li><code>username</code></li>
+            <li><code>password</code></li>
+          </ul>
+        </li>
+        <li>Service will respond with the <code>access_token</code> inside of the <code>redirect_uri</code>, surprisingly enough inside of a <code>#hash</code> fragment (as some server side components cannot read this information). 
+          You may want to take time to extract other information that is sent along here such as:
+          <ul>
+            <li><code>state</code> <em>Optional;</em> If used in the prior step.</li>
+          </ul>
+        </li>
+        <li>Application will then follow the Redirection URI without the hash fragment (detailed in the spec, I assume you must remove this with client-side scripting as it will send the hash if you don't).</li>
+        <li>Redirection URI will respond with a Script / HTML Fragment or Page containing the access_token, and any other parameters you may need. (Spec is not specific on parameter or script details, Freedom!).</li>
+      </ol>
+
       <h3>Resource Owner Password</h3>
 
       <p>Basically OAuth 1.0a Echo… without the signing and complications. Let's do this.</p>
