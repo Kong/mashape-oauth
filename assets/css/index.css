@@ -373,8 +373,7 @@ header h3 {
   margin-left: -8px;
 }
 
-
-
+/* Header bar */
 .header{
     padding:25px 25px;
     padding-bottom:9px; 
@@ -398,7 +397,6 @@ header h3 {
   height:35px;
 }
 
-/*Navigation*/
 #navigation{
     float:left;
     margin-top:5px;
@@ -423,23 +421,26 @@ header h3 {
 
 #navigation li a:hover{color:#fff;}
 
-/*Social Links*/
-#social{
-    float: right;
-    list-style:none;
-    padding: 0;
-    margin: 4px 0 0 0;
+.header #navigation {
+  width: 644px;
 }
 
-#social li{
-    float:left;
-    margin-left:10px;
+.header .button {
+  display: inline!important;
+  padding: 10px 20px 12px!important;
+  border-radius:none!important;
+  -webkit-border-radius:none!important;
+  -moz-border-radius:none!important;
+  display:block;
+  padding:15px;
+  text-align:center;
+  font-size: 1.4em;
+  color: white;
+  background:#8BB847;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+}
+.header .button:hover {
+  background: #7fb24d;
 }
 
-#social li a{
-    opacity:.5;
-}
 
-#social li a:hover{
-    opacity:1;
-}
