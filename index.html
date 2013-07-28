@@ -5,6 +5,7 @@
     <title>The OAuth Bible</title>
     <link href='http://fonts.googleapis.com/css?family=UnifrakturMaguntia|Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="assets/css/index.css" rel='stylesheet' type='text/css' />
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
   </head>
 <body>
 <a href="https://github.com/Mashape/mashape-oauth/blob/master/FLOWS.md"><img style="position: fixed; top: 0; right: 0; border: 0;z-index:50000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
@@ -68,7 +69,7 @@
     </nav>
     
     <section class="seperator offwhite" id="terminology-reference">
-      <h1>Terminology / Reference</h1>
+      <h1>Terminology / Reference <a href="#terminology-reference" class="permalink"><i class="icon-link"></i></a></h1>
       
       <ul class="nostyle padded definition">
           <li>Signed / Signature
@@ -153,7 +154,8 @@
 
     <section class="seperator" id="signed-requests">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
-        Signed Requests
+        Signed Requests 
+        <a href="#signed-requests" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <section class="seperator blockquote">
@@ -262,6 +264,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-10a-one-legged">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 1.0a (One Leg)
+        <a href="#oauth-10a-one-legged" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>What is commonly known as two-legged is actually one legged, there is only one step, thus you are standing on one leg.</p>
@@ -300,6 +303,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-10a-two-legged">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 1.0a (Two Legs)
+        <a href="#oauth-10a-two-legged" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>The real two-legged OAuth implementation, so lucrative it's like finding a diamond in the rough. Here we also avoid the user authentication step but follow the other flows of OAuth.</p>
@@ -344,6 +348,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-10a-three-legged">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 1.0a (Three Legged)
+        <a href="#oauth-10a-three-legged" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>This flow is the full experience, the grand finale, the whole shebang. It's the full-flow of OAuth 1.0a, and the most complex, excluding the other two variants on it. The user interaction in the middle of the flow is usually what causes most confusion.</p>
@@ -409,6 +414,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-10a-echo">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 1.0a (Echo)
+        <a href="#oauth-10a-echo" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>Not necessarily the most common of OAuth implementations, but it exists. Created by Raffi from Twitter it uses two extra headers in the initial request token step to validate your user on their behalf by delegation.</p>
@@ -440,6 +446,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-10a-xauth">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 1.0a (xAuth)
+        <a href="#oauth-10a-xauth" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>xAuth is a way for desktop and mobile apps to get an OAuth access token from a user’s email and password, and it is still OAuth. So the third-party will ask for your credentials on the origin service to authenticate with.</p>
@@ -485,6 +492,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-2-two-legged">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 2 (Two Legged)
+        <a href="#oauth-2-two-legged" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>By far the easiest to explain, here we have what is called a <strong>Client Credentials</strong> authorization flow. <a href="https://tools.ietf.org/html/draft-ietf-oauth-v2-31#section-4.4" target="_blank">[26, 4.4]</a> Which is also basically just the <em>Resource Owner Password</em> flow without the username and password appended to the encoded query passed along as the body, unless the service states through the url in which case is wrong.</p>
@@ -591,6 +599,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-2-three-legged">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 2 (Three Legged)
+        <a href="#oauth-2-three-legged" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>OAuth2 three-legged cuts out a lot of clutter just like the two-legged, no longer are things so complex with signing your requests.</p>
@@ -649,6 +658,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-2-refresh-token">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 2 (Refresh Token)
+        <a href="#oauth-2-refresh-token" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>In OAuth2 the <code>access_token</code> sometimes, which is most of the time, has a limited lifetime expectancy. We can assume by the <code>expires_in</code> parameter passed along at the Access Token response stage whether it will live forever or decay
@@ -679,6 +689,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="sources">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         Sources
+        <a href="#sources" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>Here is a long, windy list of places where I tracked down specific information regarding certain legs or auth specification excluding the original RFC and it's revisions.</p>
@@ -728,7 +739,7 @@ oauth_callback_confirmed=true</pre>
       $(this).justTheTip().arrow(11).pos('top').attr(['data-title']);
     });
 
-    $('.toc a,a.pull-right').click(function () {
+    $('.toc a,a.pull-right,a.permalink').click(function () {
       // Firefox & IE put the scrolltop at the html level.
       $('body,html').scrollTop($($(this).attr('href')).offset().top - 75);
       return false;

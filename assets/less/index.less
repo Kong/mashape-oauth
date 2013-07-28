@@ -331,6 +331,17 @@ header {
   h1, h2, h3 {
     padding: 1em .8em .2em;
     margin: 0;
+    position: relative;
+
+    .permalink {
+      position: absolute;
+      left: -30px;
+      color: darken(#eff2f4, 10%);
+
+      &:hover {
+        color: darken(#eff2f4, 40%);
+      }
+    }
   }
 
   h2 {
@@ -414,4 +425,74 @@ header {
   border-width: 8px;
   left: 50%;
   margin-left: -8px;
+}
+
+/* Header bar */
+.header {
+  padding:25px 25px;
+  padding-bottom:9px;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 12px;
+  background: rgba(0,0,0,.9);
+
+  li.active {
+    border-bottom: 3px solid #9ac96f;
+  }
+}
+
+#logo{
+  float: left;
+
+  img {
+    height: 35px;
+  }
+}
+
+#navigation {
+  float:left;
+  margin-top:5px;
+  margin-left:30px;
+  padding-left:30px;
+  list-style:none;
+
+  li {
+    float:left;
+    margin-right:40px;
+    line-height: 1.7;
+
+    a {
+      text-transform:uppercase;
+      text-decoration: none;
+      font-size:12px;
+      color:#d5dae1;
+      &:hover {
+        color:#fff;
+      }
+    }
+  }
+}
+
+.header {
+  .button {
+    display: inline!important;
+    padding: 10px 20px 12px!important;
+    border-radius:none!important;
+    -webkit-border-radius:none!important;
+    -moz-border-radius:none!important;
+    display:block;
+    padding:15px;
+    text-align:center;
+    font-size: 1.4em;
+    color: white;
+    background:#8BB847;
+    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+
+    &:hover {
+      background: #7fb24d;
+    }
+  }
 }

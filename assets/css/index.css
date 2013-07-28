@@ -11,7 +11,7 @@ body {
   line-height: 1.7em;
   background: #eff2f4;
   color: #7b7e85;
-  margin: 0 0 0 0;
+  margin: 20px 0 0 0;
 }
 [data-title] {
   cursor: pointer;
@@ -142,7 +142,7 @@ ol li pre {
   margin-left: -5em;
 }
 header {
-  padding: 40px 0 80px 0;
+  padding: 20px;
   background: url('http://puu.sh/2LLlN.png') no-repeat 99% 0;
 }
 header h1 {
@@ -161,12 +161,6 @@ header h3 {
   color: #CECFD0;
   font-weight: 300;
 }
-
-.content {
-  position: relative;
-  top: 75px;
-}
-
 /* Pieces */
 .foreword {
   font-style: italic;
@@ -302,6 +296,19 @@ header h3 {
 .seperator h3 {
   padding: 1em .8em .2em;
   margin: 0;
+  position: relative;
+}
+.seperator h1 .permalink,
+.seperator h2 .permalink,
+.seperator h3 .permalink {
+  position: absolute;
+  left: -30px;
+  color: #d1d9df;
+}
+.seperator h1 .permalink:hover,
+.seperator h2 .permalink:hover,
+.seperator h3 .permalink:hover {
+  color: #7690a1;
 }
 .seperator h2 {
   font-size: 1.1em;
@@ -372,75 +379,62 @@ header h3 {
   left: 50%;
   margin-left: -8px;
 }
-
 /* Header bar */
-.header{
-    padding:25px 25px;
-    padding-bottom:9px; 
-    position: fixed;
-    z-index: 100;
-    width: 100%;
-    font-family: helvetica, arial, sans-serif;
-    font-size: 12px;
-    background: rgba(0,0,0,.9);
+.header {
+  padding: 25px 25px;
+  padding-bottom: 9px;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.9);
 }
-
 .header li.active {
   border-bottom: 3px solid #9ac96f;
 }
-
-#logo{
-    float:left;
+#logo {
+  float: left;
 }
-
 #logo img {
-  height:35px;
+  height: 35px;
 }
-
-#navigation{
-    float:left;
-    margin-top:5px;
-    margin-left:30px;
-    padding-left:30px;
-    list-style:none;
-}             
-
-#navigation li{
-    float:left;
-    margin-right:40px;
-    line-height: 1.7;
-
+#navigation {
+  float: left;
+  margin-top: 5px;
+  margin-left: 30px;
+  padding-left: 30px;
+  list-style: none;
 }
-
-#navigation li a{
-    text-transform:uppercase;
-    text-decoration: none;
-    font-size:12px;  
-    color:#d5dae1;
+#navigation li {
+  float: left;
+  margin-right: 40px;
+  line-height: 1.7;
 }
-
-#navigation li a:hover{color:#fff;}
-
-.header #navigation {
-  width: 644px;
+#navigation li a {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 12px;
+  color: #d5dae1;
 }
-
+#navigation li a:hover {
+  color: #fff;
+}
 .header .button {
   display: inline!important;
   padding: 10px 20px 12px!important;
-  border-radius:none!important;
-  -webkit-border-radius:none!important;
-  -moz-border-radius:none!important;
-  display:block;
-  padding:15px;
-  text-align:center;
+  border-radius: none!important;
+  -webkit-border-radius: none!important;
+  -moz-border-radius: none!important;
+  display: block;
+  padding: 15px;
+  text-align: center;
   font-size: 1.4em;
   color: white;
-  background:#8BB847;
-  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  background: #8BB847;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 .header .button:hover {
   background: #7fb24d;
 }
-
-
