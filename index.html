@@ -727,6 +727,11 @@ oauth_callback_confirmed=true</pre>
       $(this).justTheTip().arrow(11).pos('top').attr(['data-title']);
     });
 
+    $('.toc a,a.pull-right').click(function () {
+      // Firefox & IE put the scrolltop at the html level.
+      $('body,html').scrollTop($($(this).attr('href')).offset().top - 75);
+      return false;
+    });
   </script>
 
   <script type="text/javascript">
