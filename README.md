@@ -2,6 +2,10 @@
 
 OAuth Modules for Node.js - Supporting RSA, HMAC, PLAINTEXT, 2-Legged, 3-Legged, 1.0a, Echo, XAuth, and 2.0
 
+### OAuth Bible
+
+If you're looking for the popular OAuth Bible, [here it is](https://github.com/Mashape/mashape-oauth/blob/master/FLOWS.md). It extensively explains the multitude of OAuth flows and how OAuth works.
+
 # Installation
 
 ```
