@@ -2,6 +2,9 @@
 
 I tried to make this as understandable as possible for any party reading it which means that the wording, references, and terminology used may not reflect that of a technical paper or resource. Excuse me if you may for I wish all to understand this, and not just those with a degree in understanding legal or technical jargon.
 
+Created with love by http://mashape.com
+
+
 ## Table Of Contents
 
 1. Reference
@@ -327,7 +330,7 @@ The xAuth process will give back read-only, or read-write access tokens. Some li
 
 ## OAuth 2 (two-legged)
 
-By far the easiest to explain, here we have what is called a *Client Credentials* authorization flow. [[26, 4.4]](https://tools.ietf.org/html/draft-ietf-oauth-v2-31#section-4.4) Which is also basically just the *Resource Owner Password* flow without the username and password appended to the encoded query passed along as the body, unless the service states through the url in which case is wrong.
+By far the easiest to explain, here we have what is called a *Client Credentials* authorization flow. [[20, 4.4]](http://tools.ietf.org/html/rfc6749#section-4.4) Which is also basically just the *Resource Owner Password* flow without the username and password appended to the encoded query passed along as the body, unless the service states through the url in which case is wrong.
 
 
 ***
@@ -397,7 +400,7 @@ OAuth2 three-legged cuts out a lot of clutter just like the two-legged, no longe
 1. Application redirects User to Service for Authorization:
     - `client_id`
     - `redirect_uri`
-    - `response_type` [[20, 4.1.1]](http://tools.ietf.org/html/draft-ietf-oauth-v2-31#section-4.1.1)
+    - `response_type` [[20, 4.1.1]](http://tools.ietf.org/html/rfc6749#section-4.1.1)
     - `state` *Optional;* Unique identifier to protect against CSRF [[25]](http://blog.springsource.org/2011/11/30/10317/)
     - `scope` *Optional;* what data your application can access.
     
