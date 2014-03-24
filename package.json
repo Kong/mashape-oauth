@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "private" : true,
+  "url" : "git+ssh://git@github.com:BrightLine-iTV/mashape-oauth.git",
   "dependencies": {},
   "devDependencies": {
     "mocha": "~1.8.2"
