@@ -2,10 +2,15 @@
 
 I tried to make this as understandable as possible for any party reading it which means that the wording, references, and terminology used may not reflect that of a technical paper or resource. Excuse me if you may for I wish all to understand this, and not just those with a degree in understanding legal or technical jargon.
 
-PROTIP: If you don't want to deal with OAuth, we've created http://Guardianjs.com for you.
+Created with love by [Nijikokun](http://github.com/nijikokun) @ http://mashape.com
 
-Created with love by http://mashape.com
+---
 
+**Hey!** Interested in simplifying the process to consume OAuth services like twitter, facebook, github, and thousands more? Check out [Guardian](http://guardianjs.com), it was built with simplicity, security, and ease of use in mind, allowing you to consume OAuth in a *single* request.
+
+*- [Nijiko Yonskai](http://github.com/nijikokun)*
+
+---
 
 ## Table Of Contents
 
@@ -22,7 +27,9 @@ Created with love by http://mashape.com
    1. [Two-Legged](#oauth-2-two-legged)
    2. [Three-Legged](#oauth-2-three-legged)
    3. [Refresh Token](#oauth-2-refresh-token)
-4. [Sources](#sources)
+4. [Tips & Tricks](#tips--tricks)
+5. [Tools](#Tools)
+6. [Sources](#sources)
 
 ## Terminology / Reference
 
@@ -459,6 +466,10 @@ Instead of encrypting information and using this as a sort of reversible string 
 var OAuth = require('mashape-oauth').OAuth,
     access_token = OAuth.nonce(/* Length, Default 32 */);
 ```
+
+## Tools
+
+
 
 ## Sources
 
