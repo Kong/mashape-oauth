@@ -28,7 +28,7 @@ Created with love by [Nijikokun](http://github.com/nijikokun) @ http://mashape.c
    2. [Three-Legged](#oauth-2-three-legged)
    3. [Refresh Token](#oauth-2-refresh-token)
 4. [Tips & Tricks](#tips--tricks)
-5. [Tools](#Tools)
+5. [Tools](#tools)
 6. [Sources](#sources)
 
 ## Terminology / Reference
