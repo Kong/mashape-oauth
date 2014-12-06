@@ -467,9 +467,9 @@ var OAuth = require('mashape-oauth').OAuth,
 
 ## Tools
 
-- [Guardian](http://guardianjs.com) by [@nijikokun](http://github.com/nijikokun) at [Mashape](https://mashape.com)
-- [Grant](https://github.com/simov/grant) by [@simov](https://github.com/simov)
-- [oauthd](https://github.com/oauth-io/oauthd) by [@oauthio](https://github.com/oauth-io)
+- [Guardian](http://guardianjs.com) 
+- [Grant](https://github.com/simov/grant)
+- [oauthd](https://github.com/oauth-io/oauthd)
 
 ## Sources
 
