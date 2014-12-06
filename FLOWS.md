@@ -467,9 +467,9 @@ var OAuth = require('mashape-oauth').OAuth,
 
 ## Tools
 
-- [Guardian](http://guardianjs.com) 
-- [Grant](https://github.com/simov/grant)
-- [oauthd](https://github.com/oauth-io/oauthd)
+- [Guardian](http://guardianjs.com) - Simplify consuming OAuth with a single request
+- [Grant](https://github.com/simov/grant) - Authentication Middleware for Express (built on Guardian) by [@simov](https://github.com/simov)
+- [oauthd](https://github.com/oauth-io/oauthd) - OAuth Provider Server, plugins engineered towards provider specifics.
 
 ## Sources
 
