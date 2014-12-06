@@ -8,8 +8,6 @@ Created with love by [Nijikokun](http://github.com/nijikokun) @ http://mashape.c
 
 **Hey!** Interested in simplifying the process to consume OAuth services like twitter, facebook, github, and thousands more? Check out [Guardian](http://guardianjs.com), it was built with simplicity, security, and ease of use in mind, allowing you to consume OAuth in a *single* request.
 
-*- [Nijiko Yonskai](http://github.com/nijikokun)*
-
 ---
 
 ## Table Of Contents
