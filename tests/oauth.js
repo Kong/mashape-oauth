@@ -364,7 +364,7 @@ describe('OAuth 1.0a', function () {
     };
 
     it('should provide a valid signature when token and secret are present', function (done) {
-      assert.equal( oa.authHeader("http://host.com:3323/foo/bar?bar=foo", "token", "tokensecret"), 'OAuth oauth_consumer_key="consumerkey",oauth_nonce="ybHPeOEkAUJ3k2wJT9Xb43MjtSgTvKqp",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1272399856",oauth_token="token",oauth_version="1.0",oauth_signature="7Bgx0d8AfIkL%2FGEV5K2olKVdH6o%3D"');
+      assert.equal(oa.authHeader("http://host.com:3323/foo/bar?bar=foo", "token", "tokensecret"), 'OAuth oauth_consumer_key="consumerkey",oauth_nonce="ybHPeOEkAUJ3k2wJT9Xb43MjtSgTvKqp",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1272399856",oauth_token="token",oauth_version="1.0",oauth_signature="7Bgx0d8AfIkL%2FGEV5K2olKVdH6o%3D"');
       done();
     });
 
@@ -379,7 +379,7 @@ describe('OAuth 1.0a', function () {
     it('should correctly define host headers', function (done) {
       var oa = new OAuth({
         signatureMethod: OAuth.signatures.hmac
-      }), mockProvider = {};
+      });
 
       oa.createClient = function (options) {
         assert.equal(options.headers.Host, "host.com:8080");
@@ -493,7 +493,7 @@ describe('OAuth 1.0a', function () {
           signatureMethod: OAuth.signatures.hmac
         }), written = false;
 
-        oa.createClient = function (options) {
+        oa.createClient = function () {
           return {
             write: function (body) {
               written = true;
