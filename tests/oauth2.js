@@ -1,6 +1,5 @@
 var assert = require('assert'),
     events = require('events'),
-    crypto = require('crypto'),
        url = require('url'),
     OAuth2 = require('../index').OAuth2;
 
@@ -10,7 +9,7 @@ FakeResponse.prototype.setEncoding = function () {};
 
 var FakeRequest = function (response) { this.response = response; };
 FakeRequest.prototype = events.EventEmitter.prototype;
-FakeRequest.prototype.write = function (body) { this.emit('response', this.response); };
+FakeRequest.prototype.write = function () { this.emit('response', this.response); };
 FakeRequest.prototype.end = function () { this.response.emit('end'); };
 
 describe('OAuth2', function () {
@@ -79,7 +78,7 @@ describe('OAuth2', function () {
           callback(null, '{"access_token":"access","refresh_token":"refresh"}');
         };
 
-        oa.getOAuthAccessToken("", {}, function (error, access, refresh, results) {
+        oa.getOAuthAccessToken("", {}, function (error, access, refresh) {
           assert.equal(access, "access");
           assert.equal(refresh, "refresh");
           oa.request = prior.request;
@@ -106,7 +105,7 @@ describe('OAuth2', function () {
 
     describe('Grant Type', function () {
       it('should pass value of code argument as parameter when no grant_type is specified', function (done) {
-        oa.request = function (options, callback) {
+        oa.request = function (options) {
           assert.notEqual(-1, options.body.indexOf("code=mashape"));
           oa.request = prior.request;
           done();
@@ -115,9 +114,9 @@ describe('OAuth2', function () {
         oa.getOAuthAccessToken("mashape", {});
       });
 
-      it('should pass value of code argument as parameter when an invalid grant_type is specified', function (done) {
-        oa.request = function (options, callback) {
-          assert.notEqual(-1, options.body.indexOf("code=mashape"));
+      it('should pass value of argument as parameter when an invalid grant_type is specified', function (done) {
+        oa.request = function (options) {
+          assert.notEqual(-1, options.body.indexOf("refresh_toucan=mashape"));
           oa.request = prior.request;
           done();
         };
@@ -126,7 +125,7 @@ describe('OAuth2', function () {
       });
 
       it('should pass value of code argument as the refresh_token parameter when a grant_type is specified, with no code specified', function (done) {
-        oa.request = function (options, callback) {
+        oa.request = function (options) {
           assert.notEqual(-1, options.body.indexOf("refresh_token=mashape"));
           assert.notEqual(-1, options.body.indexOf("grant_type=refresh_token"));
           assert.equal(-1, options.body.indexOf("code="));
@@ -140,7 +139,7 @@ describe('OAuth2', function () {
 
     describe('useAuthHeaderForGet()', function () {
       it('should force usage of access_token as bearer when using', function (done) {
-        oa.request = function (options, callback) {
+        oa.request = function (options) {
           assert.equal(options.headers.Authorization, "Bearer mashape");
           oa.request = prior.request;
           done();
@@ -151,7 +150,7 @@ describe('OAuth2', function () {
       });
 
       it('should force usage of access_token as basic when Auth Method is Basic', function (done) {
-        oa.request = function (options, callback) {
+        oa.request = function (options) {
           assert.equal(options.headers.Authorization, "Basic mashape");
           oa.request = prior.request;
           oa.authorizationMethod = "Bearer";
@@ -164,7 +163,7 @@ describe('OAuth2', function () {
       });
 
       it('should not provide an Authorization header if not used', function (done) {
-        oa.request = function (options, callback) {
+        oa.request = function (options) {
           assert.equal(options.headers.Authorization, undefined);
           assert.equal(options.access_token, "mashape");
           oa.request = prior.request;
@@ -187,7 +186,7 @@ describe('OAuth2', function () {
     }), prior = { request: oa.request, executeRequest: oa.executeRequest };
 
     it('should extend existing headers and mix them in with defaults', function (done) {
-      oa.executeRequest = function (options, callback) {
+      oa.executeRequest = function (options) {
         assert.equal(options.headers["X-Mashape-Proxy"], '1.0');
         oa.executeRequest = prior.executeRequest;
         done();
