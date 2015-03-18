@@ -451,6 +451,7 @@ If an expired token is used the Service will respond with a Session expired or I
 2. Service validates and responds with the following parameters:
    - `access_token`
    - `issued_at`
+   - `refresh_token` *Optional;* Server MAY revoke and reissue the refresh token
 
 ## Tips & Tricks
 
