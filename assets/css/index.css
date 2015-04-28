@@ -172,6 +172,7 @@ header h3 {
   font-style: italic;
   font-weight: 400;
   position: relative;
+  padding-bottom: 0 !important;
 }
 .foreword:before {
   content: "F";
