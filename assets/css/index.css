@@ -9,7 +9,6 @@ body {
   font-size: 16px;
   font-family: "Open Sans";
   line-height: 1.7em;
-  background: #eff2f4;
   color: #7b7e85;
   margin: 0;
 }
@@ -32,6 +31,10 @@ a {
 }
 a:hover {
   color: #53544A;
+}
+a.pull-right[href="#table-of-contents"] {
+  font-size: 12px;
+  margin-top: 5px;
 }
 h1,
 h2,
@@ -226,6 +229,8 @@ header h3 {
   margin-bottom: .5em;
 }
 .container > .seperator {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
   border-bottom: 1px solid #eff2f4;
 }
 .container > .seperator:last-child {
