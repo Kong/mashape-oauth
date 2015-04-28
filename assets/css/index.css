@@ -288,7 +288,7 @@ header h3 {
   color: #FEAB1E;
 }
 .seperator.bloodorange code {
-  background: hsl(26, 99%, 35%);
+  background: hsl(26, 99%, 40%);
 }
 .seperator.bloodorange pre,
 .seperator.bloodorange pre code {
@@ -379,7 +379,7 @@ h1 + .seperator {
   font-style: italic;
 }
 .just-the-tip code {
-  background: hsl(26, 99%, 35%);
+  background: hsl(26, 99%, 40%);
   font-weight: bold;
   color: white;
 }
