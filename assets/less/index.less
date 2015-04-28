@@ -10,11 +10,11 @@ body {
   font-size: 16px;
   font-family: "Open Sans";
   line-height: 1.7em;
-  
+
   background: #eff2f4;
   color: #7b7e85;
-  
-  margin: 20px 0 0 0;
+
+  margin: 0;
 }
 
 [data-title] {
@@ -37,7 +37,7 @@ body {
 a {
   color: #5898cc;
   text-decoration: none;
-  
+
   &:hover {
     color: #53544A;
   }
@@ -65,12 +65,12 @@ pre {
     width: 12px;
     height: 6px;
   }
- 
+
   &::-webkit-scrollbar-track {
     background: #F2F5F8;
     border-radius: 0px;
   }
- 
+
   &::-webkit-scrollbar-thumb {
     border-radius: 0px;
     background: #feab1e;
@@ -98,7 +98,7 @@ p + pre {
 ul, ol {
   &.nostyle {
     list-style: none;
-    
+
     ul, ol, li {
       list-style: none;
     }
@@ -113,7 +113,7 @@ ul, ol {
       margin-left: 10px;
     }
   }
-  
+
   &.padded {
     padding: 0 2em 1em;
   }
@@ -126,13 +126,13 @@ ul, ol {
       }
     }
   }
-  
+
   &.definition {
     > li {
       font-weight: 600;
       padding: 0 0 1em;
       color: #454E49;
-      
+
       li {
         color: #7b7e85;
         font-weight: normal;
@@ -163,12 +163,12 @@ ul, ol {
 header {
   padding: 20px;
   background: url('http://puu.sh/2LLlN.png') no-repeat 99% 0;
-  
+
   h1 {
     font-size: 48pt;
     font-weight: 300;
     text-align: center;
-    
+
     // Lowercase
     text-transform: lowercase;
     font-variant: small-caps;
@@ -189,9 +189,9 @@ header {
 .foreword {
   font-style: italic;
   font-weight: 400;
-  
+
   position: relative;
-  
+
   &:before {
     content: "F";
     font-size: 72pt;
@@ -200,7 +200,7 @@ header {
     top: 40%;
     right: 30px;
   }
-    
+
   p {
     margin-right: 5em;
   }
@@ -208,21 +208,21 @@ header {
 
 .toc {
   padding: 1em .8em 2em .3em;
-  
+
   ol, ul {
     list-style: none;
-    margin: 0; 
+    margin: 0;
     padding: 0;
-    
+
     h4 {
       font-weight: 400;
       text-transform: uppercase;
       border-bottom: 1px solid #eee;
     }
-    
+
     > li {
       position: relative;
-      
+
       &:before {
           content: attr(page);
           float: right;
@@ -233,7 +233,7 @@ header {
       }
     }
   }
-  
+
   > ol {
     > li {
       width: 30%;
@@ -252,6 +252,7 @@ header {
     background: white;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     border-radius: 3px 3px 0 0;
+    margin-top: 100px;
   }
 
   &.slim {
@@ -294,7 +295,7 @@ header {
       color: #292B2A;
     }
   }
-  
+
   &.bloodorange {
     background: #e66401;
     color: #FEFEFE;
@@ -312,7 +313,7 @@ header {
       color: #292B2A;
     }
   }
-  
+
   &.junglegreen {
     background: #8BB847;
     color: #FEFEFE;
@@ -322,12 +323,12 @@ header {
       color: #FEFEFE;
     }
   }
-  
+
   &.offwhite {
     background: #FCFCFC;
     border-top: none;
   }
-  
+
   h1, h2, h3 {
     padding: 1em .8em .2em;
     margin: 0;
