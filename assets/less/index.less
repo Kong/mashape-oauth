@@ -27,6 +27,10 @@ body {
 
 .pull-right {
   float: right;
+
+  &[href="#table-of-contents"] {
+    font-size: 12px;
+  }
 }
 
 .clear {
@@ -47,7 +51,9 @@ h1, h2, h3, h4, code, pre {
 }
 
 code {
-  padding: 0 3px;
+  padding: 2px 5px 3px;
+  background: hsl(201, 30%, 95%);
+  border-radius: 3px;
 }
 
 pre {
@@ -58,11 +64,13 @@ pre {
 
   code {
     display: block;
+    padding: 0 3px;
+    background: none;
   }
 
   &::-webkit-scrollbar {
     width: 12px;
-    height: 6px;
+    height: 4px;
   }
 
   &::-webkit-scrollbar-track {
@@ -72,7 +80,7 @@ pre {
 
   &::-webkit-scrollbar-thumb {
     border-radius: 0px;
-    background: #feab1e;
+    background: hsl(0, 0%, 80%);
     cursor: pointer;
   }
 
@@ -272,8 +280,8 @@ header {
 
 .seperator {
   &.blockquote {
-    background: #E6F0F5;
-    color: #658199;
+    background: hsl(200, 40%, 95%);
+    color: hsl(208, 40%, 50%);
     border-top: none;
 
     h1, h2, h3 {
@@ -290,6 +298,14 @@ header {
 
     *, h1, h2, h3 {
       color: #FEFEFE;
+    }
+
+    code {
+      background: hsl(198, 99%, 35%);
+    }
+
+    pre code {
+      background: none;
     }
 
     pre, pre code {
@@ -310,6 +326,14 @@ header {
       color: #FEAB1E;
     }
 
+    code {
+      background: hsl(26, 99%, 35%);
+    }
+
+    pre code {
+      background: none;
+    }
+
     pre, pre code {
       color: #292B2A;
     }
@@ -323,11 +347,19 @@ header {
     *, h1, h2, h3 {
       color: #FEFEFE;
     }
+
+    code {
+      background: hsl(84, 44%, 40%);
+    }
+
+    pre code {
+      background: none;
+    }
   }
 
   &.offwhite {
     background: #FCFCFC;
-    border-top: none;
+    border-top: 1px solid hsl(204, 19%, 95%);
   }
 
   h1, h2, h3 {
@@ -355,6 +387,10 @@ header {
     font-size: 1em;
     line-height: 1.3em;
   }
+}
+
+h1 + .seperator {
+  margin-top: 1em;
 }
 
 .rounded {
@@ -394,6 +430,7 @@ header {
   }
 
   code {
+    background: hsl(26, 99%, 35%);
     font-weight: bold;
     color: white;
   }
