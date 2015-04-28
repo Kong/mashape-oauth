@@ -380,7 +380,7 @@ h1 + .seperator {
 }
 .just-the-tip code {
   background: hsl(26, 99%, 40%);
-  font-weight: bold;
+  font-weight: 400;
   color: white;
 }
 .just-the-tip .time {
