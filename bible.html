@@ -22,17 +22,17 @@
 
     <div class="clear"></div>
   </section>
-  
+
   <section class="container rounded">
     <header>
       <h1>The OAuth Bible</h1>
       <h3>By Author Nijiko Yonskai</h3>
     </header>
-    
+
     <section class="seperator foreword bloodorange">
       <p>I tried to make this as understandable as possible for any party reading it which means that the wording, references, and terminology used may not reflect that of a technical paper or resource. Excuse me if you may for I wish all to understand this, and not just those with a degree in understanding technical jargon.</p>
     </section>
-    
+
     <nav class="toc" id="table-of-contents">
       <ol>
         <li><h4>Reference</h4>
@@ -61,10 +61,10 @@
       </ol>
       <div class="clear"></div>
     </nav>
-    
+
     <section class="seperator offwhite">
       <h1>Terminology / Reference</h1>
-      
+
       <ul class="nostyle padded definition">
           <li>Signed / Signature
               <ul>
@@ -260,11 +260,11 @@ oauth_callback_confirmed=true</pre>
       </h1>
 
       <p>What is commonly known as two-legged is actually one legged, there is only one step, thus you are standing on one leg.</p>
-      
+
       <section class="seperator blockquote bloodorange">
         <h2>Notice</h2>
 
-        <p>Google requires a custom parameter that must be added to the query string of the url you are 
+        <p>Google requires a custom parameter that must be added to the query string of the url you are
       request called <code>xoauth_requester_id</code> [<a href="https://developers.google.com/google-apps/gmail/oauth_protocol#oauth_request_url" target="_blank">R</a>] and many others.</p>
       </section>
       <section class="seperator blockquote">
@@ -525,7 +525,7 @@ oauth_callback_confirmed=true</pre>
             <li><code>redirect_uri</code> This is a server-side Redirection URI hosted by the provider or yourself.</li>
             <li><code>scope</code></li>
             <li><code>state</code> <em>Optional</em></li>
-            <li><code>client_id</code></li> 
+            <li><code>client_id</code></li>
           </ul>
         </li>
         <li>User may need to authorize, this is not required, but we will assume they are granting access.
@@ -534,7 +534,7 @@ oauth_callback_confirmed=true</pre>
             <li><code>password</code></li>
           </ul>
         </li>
-        <li>Service will respond with the <code>access_token</code> inside of the <code>redirect_uri</code>, surprisingly enough inside of a <code>#hash</code> fragment (as some server side components cannot read this information). 
+        <li>Service will respond with the <code>access_token</code> inside of the <code>redirect_uri</code>, surprisingly enough inside of a <code>#hash</code> fragment (as some server side components cannot read this information).
           You may want to take time to extract other information that is sent along here such as:
           <ul>
             <li><code>state</code> <em>Optional;</em> If used in the prior step.</li>
@@ -713,6 +713,7 @@ oauth_callback_confirmed=true</pre>
     </section>
   </section>
 
+  <script type="text/javascript" src="//mashape.github.io/notification-bar/embed.js" async defer></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   <script src="assets/js/just.the.tip.js" charset="utf-8"></script>
