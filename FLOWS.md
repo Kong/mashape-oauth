@@ -503,4 +503,4 @@ Here is a long, windy list of places where I tracked down specific information r
 24. [Understanding Web Server OAuth Flow](http://www.salesforce.com/us/developer/docs/api_rest/Content/intro_understanding_web_server_oauth_flow.htm) - Salesforce
 25. [CSRF & OAuth2](http://blog.springsource.org/2011/11/30/10317/) - Springsource
 26. [OAuth v2-31](https://tools.ietf.org/html/draft-ietf-oauth-v2-31) - IETF
-27. [Resource Owner Flow](http://techblog.hybris.com/2012/06/11/oauth2-resource-owner-password-flow/) - Hybris
+27. [Resource Owner Flow](http://labs.hybris.com/2012/06/11/oauth2-resource-owner-password-flow/) - Hybris
