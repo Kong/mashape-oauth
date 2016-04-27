@@ -195,7 +195,7 @@ this has also been deprecated in favor of OAuth2.
 2. Service Validates and Grants Access to Resources.
 3. Application Utilizes Requested Resources
 
-This is probably the most quickest method of consuming an OAuth implementation however it comes with a few drawbacks on security which you can assume for yourself whether it is the best for your application.
+This is probably the quickest method of consuming an OAuth implementation, however it comes with a few security drawbacks. You can decide for yourself whether it is the best for your application.
 
 ## OAuth 1.0a (two-legged)
 
