@@ -418,7 +418,7 @@ OAuth2 three-legged cuts out a lot of clutter just like the two-legged, no longe
 https://oauth_service/login/oauth/authorize?client_id=3MVG9lKcPoNINVB&redirect_uri=http://localhost/oauth/code_callback&scope=user
     ```
 2. User logs into the Service and grants Application access.
-3. Service redirects User back to the `redirect_url` with:
+3. Service redirects User back to the `redirect_uri` with:
     - `code`
     - `state`
 4. Application takes the `code` and exchanges it for an Access Token:
