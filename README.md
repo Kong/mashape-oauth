@@ -104,13 +104,13 @@ oa.getOAuthAccessToken(options, callback);
 oa.getOAuthAccessToken({
   oauth_verifier: 'ssid39b',
   oauth_token: 'request_key',
-  oauth_secret: 'request_secret'
+  oauth_token_secret: 'request_secret'
 }, function (error, token, secret, result) {
   if (error)
-    return res.send('Error getting XAuth Access Token: ' + error, 500);
+    return res.send('Error getting Auth Access Token: ' + error, 500);
   else
     // Usually you want to store the token and secret in a session and make your requests after this
-    return res.send('Successfully Obtained Token & Secret: ' + oauth_token + ' & ' + oauth_token_secret, 200);
+    return res.send('Successfully Obtained Token & Secret: ' + token + ' & ' + secret, 200);
 });
 ```
 
