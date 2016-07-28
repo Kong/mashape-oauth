@@ -219,6 +219,7 @@ The real two-legged OAuth implementation, so lucrative it's like finding a diamo
 3. Exchange Request Token for Access Token, **signed** request
     - `oauth_token` *Request Token*
     - `oauth_consumer_key`
+    - `oauth_timestamp`
     - `oauth_nonce`
     - `oauth_signature`
     - `oauth_signature_method`
@@ -259,6 +260,7 @@ This flow is the full experience, the grand finale, the whole shebang. It's the 
 3. Exchange Request Token / Verifier for Access Token, **signed** request
     - `oauth_token` *Request Token;*
     - `oauth_consumer_key`
+    - `oauth_timestamp`
     - `oauth_nonce`
     - `oauth_signature`
     - `oauth_signature_method`
