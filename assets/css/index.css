@@ -6,8 +6,8 @@
   box-sizing: border-box;
 }
 body {
-  font-size: 16px;
-  font-family: "Open Sans";
+  font-size: 1em;
+  font-family: "Fira Sans";
   line-height: 1.7em;
   color: hsl(222, 4%, 10%);
   margin: 0;
@@ -24,6 +24,7 @@ body {
 }
 .pull-right[href="#table-of-contents"] {
   font-size: 12px;
+  padding-top: .2em;
 }
 .clear {
   clear: both;
@@ -31,6 +32,7 @@ body {
 a {
   color: #5898cc;
   text-decoration: none;
+  cursor: pointer;
 }
 a:hover {
   color: #53544A;
@@ -42,17 +44,24 @@ h4,
 code,
 pre {
   color: #292B2A;
+  font-weight: 600;
+}
+
+pre,code {
+  font-family: 'Source Code Pro', Monaco, monospace;
 }
 code {
   padding: 2px 5px 3px;
   background: hsl(201, 30%, 95%);
   border-radius: 3px;
+  font-weight: 500;
 }
 pre {
   overflow: auto;
   padding: 1em;
   margin-bottom: 1em;
   background: #F5F8FA;
+  border-radius: 3px;
 }
 pre code {
   display: block;
@@ -146,17 +155,19 @@ ul li pre,
 ol li pre {
   margin-top: .8em;
   margin-left: -5em;
+  /* margin-bottom: 0; */
 }
 header {
   padding: 20px;
-  background: url('http://puu.sh/2LLlN.png') no-repeat 99% 0;
+  background: url('http://puu.sh/2LLlN.png') no-repeat 100% -450%;
 }
 header h1 {
-  font-size: 48pt;
-  font-weight: 300;
+  font-size: 6em;
+  font-weight: 400;
   text-align: center;
-  text-transform: lowercase;
-  font-variant: small-caps;
+  font-family: Eczar;
+  margin-top: 1em;
+  margin-bottom: .6em;
 }
 header h3 {
   text-align: center;
@@ -164,7 +175,7 @@ header h3 {
   padding: 0;
   margin: -1em 0 1em 0;
   font-style: italic;
-  color: #CECFD0;
+  color: #888;
   font-weight: 300;
 }
 /* Pieces */
@@ -173,17 +184,9 @@ header h3 {
   font-weight: 400;
   position: relative;
   padding-bottom: 0 !important;
-}
-.foreword:before {
-  content: "F";
-  font-size: 72pt;
-  font-family: "UnifrakturMaguntia";
-  position: absolute;
-  top: 40%;
-  right: 30px;
-}
-.foreword p {
-  margin-right: 5em;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  text-align: center;
 }
 .toc {
   padding: 1em .8em 4em .3em;
@@ -197,12 +200,13 @@ header h3 {
 .toc ol h4,
 .toc ul h4 {
   font-weight: 400;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   border-bottom: 1px solid #eee;
 }
 .toc ol > li,
 .toc ul > li {
   position: relative;
+  padding-bottom: .3em;
 }
 .toc ol > li:before,
 .toc ul > li:before {
@@ -211,7 +215,7 @@ header h3 {
   padding: 0 10px;
   display: inline-block;
   background: white;
-  color: #ccc;
+  color: hsl(0, 0%, 90%);
 }
 .toc > ol > li {
   width: 30%;
@@ -226,7 +230,7 @@ header h3 {
 .container.rounded {
   background: white;
   border-radius: 3px 3px 0 0;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 .container.slim {
   margin-bottom: .5em;
@@ -244,6 +248,7 @@ header h3 {
   background: hsl(200, 40%, 95%);
   color: hsl(208, 40%, 50%);
   border-top: none;
+  border-radius: 3px;
 }
 .seperator.blockquote h1,
 .seperator.blockquote h2,
@@ -331,6 +336,7 @@ header h3 {
   position: absolute;
   left: -30px;
   color: #d1d9df;
+  top: 1.1em;
 }
 .seperator h1 .permalink:hover,
 .seperator h2 .permalink:hover,
@@ -412,18 +418,17 @@ h1 + .seperator {
 }
 /* Header bar */
 .header {
-  padding: 25px 25px;
+  padding: 1em;
   padding-bottom: 9px;
   position: fixed;
   top: 0;
   z-index: 100;
   width: 100%;
-  font-family: helvetica, arial, sans-serif;
-  font-size: 12px;
-  background: rgba(0, 0, 0, 0.9);
+  font-family: 'Fira Sans', sans-serif;
+  background: hsl(205, 100%, 10%);
 }
-.header li.active {
-  border-bottom: 3px solid #9ac96f;
+#navigation li.active a {
+  color: white;
 }
 #logo {
   float: left;
@@ -444,10 +449,11 @@ h1 + .seperator {
   line-height: 1.7;
 }
 #navigation li a {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   text-decoration: none;
-  font-size: 12px;
-  color: #d5dae1;
+  font-size: 13px;
+  color: hsla(0, 0%, 100%, 0.55);
+  font-weight: 500;
 }
 #navigation li a:hover {
   color: #fff;
@@ -468,4 +474,19 @@ h1 + .seperator {
 }
 .header .button:hover {
   background: #7fb24d;
+}
+header h2 {
+    /* text-align: center; */
+    font-size: 1em;
+    letter-spacing: .3em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.hero {
+    padding-top: 80px;
+}
+
+h1 {
+    font-size: 1.6em;
 }

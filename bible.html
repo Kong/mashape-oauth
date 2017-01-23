@@ -1,43 +1,55 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset=utf-8 />
+<html><head>
+    <meta charset="utf-8">
     <title>The OAuth Bible</title>
-    <META http-equiv="refresh" content="0;URL=http://oauthbible.com">
-    <link href='http://fonts.googleapis.com/css?family=UnifrakturMaguntia|Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href="assets/css/index.css" rel='stylesheet' type='text/css' />
+    <link href="https://fonts.googleapis.com/css?family=Eczar:400,500,600,700|Fira+Sans:300,300i,400,400i,500,500i,600,600i,700,700i|Source+Code+Pro:400,500,600,700" rel="stylesheet">
+    <link href="assets/css/index.css" rel="stylesheet" type="text/css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
   </head>
 <body>
+<a href="https://github.com/Mashape/mashape-oauth/blob/master/FLOWS.md"><img style="position: fixed; top: 0; right: 0; border: 0;z-index:50000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  <section class="header">
+    <div class=" container slim">
+      <!-- Button -->
 
-  <section class="container slim">
-    <ul class="pull-right nostyle inline nav">
-      <li>From <a href="https://mashape.com">Mashape</a></li>
-      <li>&</li>
-      <li>On <a href="https://github.com/Mashape/mashape-oauth/">Github</a></li>
-    </ul>
 
-    <ul class="nostyle inline nav">
-      <li>Copyright 2013</li>
-    </ul>
+      <!-- Logo -->
+
+      <a href="https://mashape.com/" id="logo"><img src="https://www.mashape.com/assets/images/logo.svg" width="145" height="35" alt="Logo"></a>
+
+      <!-- Navigation -->
+      <ul id="navigation" style="display: inline-block; width: auto;">
+        <li><a href="http://blog.mashape.com/">Blog</a></li>
+        <li class="active"><a href="http://oauthbible.com/">OAuth Bible</a></li>
+        <li><a href="http://guardianjs.com">Guardian</a></li>
+        <li><a href="http://unirest.io">Unirest</a></li>
+        <li><a href="https://getkong.org">Kong</a></li>
+        <li><a href="https://apianalytics.com">Galileo</a></li>
+      </ul>
+    </div>
 
     <div class="clear"></div>
   </section>
 
-  <section class="container rounded">
+  <section class="hero content container rounded">
     <header>
       <h1>The OAuth Bible</h1>
-      <h3>By Author Nijiko Yonskai</h3>
-    </header>
 
-    <section class="seperator foreword bloodorange">
+      <h3>By <a href="http://twitter.com/nijikokun">@nijikokun</a></h3>
+    </header>
+  </section>
+
+  <section class="seperator foreword">
+    <section class="container">
       <p>I tried to make this as understandable as possible for any party reading it which means that the wording, references, and terminology used may not reflect that of a technical paper or resource. Excuse me if you may for I wish all to understand this, and not just those with a degree in understanding technical jargon.</p>
     </section>
+  </section>
 
+  <section class="content container rounded">
     <nav class="toc" id="table-of-contents">
       <ol>
         <li><h4>Reference</h4>
           <ol>
-            <li page="1"><a href="#terminology--reference">Terminology</a></li>
+            <li page="1"><a href="#terminology-reference">Terminology</a></li>
             <li page="5"><a href="#signed-requests">Signed Requests</a></li>
             <li page="50"><a href="#sources">Sources</a></li>
           </ol>
@@ -62,8 +74,8 @@
       <div class="clear"></div>
     </nav>
 
-    <section class="seperator offwhite">
-      <h1>Terminology / Reference</h1>
+    <section class="seperator" id="terminology-reference">
+      <h1>Terminology / Reference <a href="#terminology-reference" class="permalink"><i class="icon-link"></i></a></h1>
 
       <ul class="nostyle padded definition">
           <li>Signed / Signature
@@ -99,7 +111,7 @@
           </li>
           <li>Query
               <ul>
-                  <li>Part of the URL that contains key-value data invoked by the <code>?</code> symbol, the keys and values are seperated by the <code data-title="key=value">=</code> sign and each data-store is seperated by the <code>&</code> symbol:</li>
+                  <li>Part of the URL that contains key-value data invoked by the <code>?</code> symbol, the keys and values are seperated by the <code data-title="key=value">=</code> sign and each data-store is seperated by the <code>&amp;</code> symbol:</li>
                   <li>http://httpbin.org/<code>?query=looks&amp;like=this</code></li>
               </ul>
           </li>
@@ -149,6 +161,7 @@
     <section class="seperator" id="signed-requests">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         Signed Requests
+        <a href="#signed-requests" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <section class="seperator blockquote">
@@ -165,22 +178,22 @@
 
       <h2>Signature Base String</h2>
 
-      <p>Gathering the <code>Method</code> of the request, the <code>URL</code> of the request (or in the case of <code>OAuth Echo</code> the verify credentials uri) and the <code>Parameters</code> joined together by the <code>&</code> symbol would look like this raw (example from <a href="https://dev.twitter.com/docs/auth/creating-signature" target="_blank">twitter</a>):</p>
+      <p>Gathering the <code>Method</code> of the request, the <code>URL</code> of the request (or in the case of <code>OAuth Echo</code> the verify credentials uri) and the <code>Parameters</code> joined together by the <code>&amp;</code> symbol would look like this raw (example from <a href="https://dev.twitter.com/docs/auth/creating-signature" target="_blank">twitter</a>):</p>
 
-      <pre><code>POST&https%3A%2F%2Fapi.twitter.com%2F1%2Fstatuses%2Fupdate.json&include_entities%3Dtrue%26oauth_consumer_key%3Dxvz1evFS4wEEPTGEFPHBog%26oauth_nonce%3DkYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1318622958%26oauth_token%3D370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb%26oauth_version%3D1.0%26status%3DHello%2520Ladies%2520%252B%2520Gentlemen%252C%2520a%2520signed%2520OAuth%2520request%2521</code></pre>
+      <pre><code>POST&amp;https%3A%2F%2Fapi.twitter.com%2F1%2Fstatuses%2Fupdate.json&amp;include_entities%3Dtrue%26oauth_consumer_key%3Dxvz1evFS4wEEPTGEFPHBog%26oauth_nonce%3DkYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1318622958%26oauth_token%3D370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb%26oauth_version%3D1.0%26status%3DHello%2520Ladies%2520%252B%2520Gentlemen%252C%2520a%2520signed%2520OAuth%2520request%2521</code></pre>
 
       <h2>Signing Key</h2>
 
-      <p>The <code>signature base</code> string is then encrypted with a salt called the <strong>signing key</strong> which is always a joining of the OAuth <code>Consumer Secret</code> and <code>Token Secret</code> once again by the <code>&</code> character like so:</p>
+      <p>The <code>signature base</code> string is then encrypted with a salt called the <strong>signing key</strong> which is always a joining of the OAuth <code>Consumer Secret</code> and <code>Token Secret</code> once again by the <code>&amp;</code> character like so:</p>
 
-      <pre><code>kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw<span data-title="seperator">&</span>LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE</code></pre>
+      <pre><code>kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw<span data-title="seperator">&amp;</span>LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE</code></pre>
 
       <section class="seperator blockquote">
         <h2>Note</h2>
 
-        <p>Sometimes in case of RSA Encryption and xAuth the signing key may only be the <code>Consumer Secret</code> with the <code>&</code> symbol appended or not.</p>
+        <p>Sometimes in case of RSA Encryption and xAuth the signing key may only be the <code>Consumer Secret</code> with the <code>&amp;</code> symbol appended or not.</p>
 
-        <p>For more insights check out the following lines, <a href="https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L233" target="_blank">#233</a> & <a href="https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L283" target="_blank">#283</a> from the <code>mashape-oauth</code> node module.</p>
+        <p>For more insights check out the following lines, <a href="https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L233" target="_blank">#233</a> &amp; <a href="https://github.com/Mashape/mashape-oauth/blob/master/lib/oauth.js#L283" target="_blank">#283</a> from the <code>mashape-oauth</code> node module.</p>
       </section>
 
 
@@ -245,8 +258,8 @@ Cache-Control: no-cache, no-store, must-revalidate, pre-check=0, post-check=0
 Vary: Accept-Encoding
 Server: tfe
 
-oauth_token=NPcudxy0yU5T3tBzho7iCotZ3cnetKwcTIRlX0iwRl0&
-oauth_token_secret=veNRnAWe6inFuo8o2u8SLLZLjolYDmDP7SzL0YfYI&
+oauth_token=NPcudxy0yU5T3tBzho7iCotZ3cnetKwcTIRlX0iwRl0&amp;
+oauth_token_secret=veNRnAWe6inFuo8o2u8SLLZLjolYDmDP7SzL0YfYI&amp;
 oauth_callback_confirmed=true</pre>
 
       <p>Great, <code>200</code> response with the <code>oauth_token</code>, <code>oauth_token_secret</code> and <code>oauth_callback_confirmed</code> parameters. This is perfect, now you can use the <code>oauth_token_secret</code> for creating your signature for the access token and <code>oauth_token</code> for authenticating the request.</p>
@@ -257,6 +270,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-10a-one-legged">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 1.0a (One Leg)
+        <a href="#oauth-10a-one-legged" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>What is commonly known as two-legged is actually one legged, there is only one step, thus you are standing on one leg.</p>
@@ -271,7 +285,7 @@ oauth_callback_confirmed=true</pre>
         <p>However, they have depricated OAuth 1.0a in favor of OAuth2. So make sure you are up to date on service authentication protocols and quirky requirements as the following information may not always be all that is required.</p>
       </section>
 
-      <img src="http://puu.sh/2pe07.png" align="right" />
+      <img src="http://puu.sh/2pe07.png" align="right">
 
       <ol>
         <li>Application sends a <strong>signed</strong> request to the Service giving it:
@@ -295,11 +309,12 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-10a-two-legged">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 1.0a (Two Legs)
+        <a href="#oauth-10a-two-legged" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>The real two-legged OAuth implementation, so lucrative it's like finding a diamond in the rough. Here we also avoid the user authentication step but follow the other flows of OAuth.</p>
 
-      <img src="http://puu.sh/2peUI.png" align="right" />
+      <img src="http://puu.sh/2peUI.png" align="right">
 
       <ol>
         <li>Application sends a <strong>signed</strong> request for a Request Token:
@@ -339,11 +354,12 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-10a-three-legged">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 1.0a (Three Legged)
+        <a href="#oauth-10a-three-legged" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>This flow is the full experience, the grand finale, the whole shebang. It's the full-flow of OAuth 1.0a, and the most complex, excluding the other two variants on it. The user interaction in the middle of the flow is usually what causes most confusion.</p>
 
-      <img src="http://puu.sh/2pJ4y" align="right" />
+      <img src="http://puu.sh/2pJ4y" align="right">
 
       <ol>
         <li>Application sends a <strong>signed</strong> request for a Request Token:
@@ -404,13 +420,14 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-10a-echo">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 1.0a (Echo)
+        <a href="#oauth-10a-echo" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>Not necessarily the most common of OAuth implementations, but it exists. Created by Raffi from Twitter it uses two extra headers in the initial request token step to validate your user on their behalf by delegation.</p>
 
       <p>So essentially the <span data-title="Third-Party, Delegator">Service</span> will authenticate and verify the user against the originating service such as <span data-title="Origin Source">Twitter</span>.</p>
 
-      <img src="http://puu.sh/2pKKr.png" align="right" />
+      <img src="http://puu.sh/2pKKr.png" align="right">
 
       <ol>
         <li>Application sends a signed request along with any data and:
@@ -435,6 +452,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-10a-xauth">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 1.0a (xAuth)
+        <a href="#oauth-10a-xauth" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>xAuth is a way for desktop and mobile apps to get an OAuth access token from a user’s email and password, and it is still OAuth. So the third-party will ask for your credentials on the origin service to authenticate with.</p>
@@ -446,7 +464,7 @@ oauth_callback_confirmed=true</pre>
         <p>The user's credentials should never be kept by the application requesting them.</p>
       </section>
 
-      <a href="http://puu.sh/2qnhm.png" target="_blank"><img src="http://puu.sh/2qneC.png" align="right" vspace="15px" /></a>
+      <a href="http://puu.sh/2qnhm.png" target="_blank"><img src="http://puu.sh/2qneC.png" align="right" vspace="15px"></a>
 
       <ol>
         <li>Application Requests User Credentials</li>
@@ -480,9 +498,10 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-2-two-legged">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 2 (Two Legged)
+        <a href="#oauth-2-two-legged" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
-      <p>By far the easiest to explain, here we have what is called a <strong>Client Credentials</strong> authorization flow. <a href="https://tools.ietf.org/html/draft-ietf-oauth-v2-31#section-4.4" target="_blank">[26, 4.4]</a> Which is also basically just the <em>Resource Owner Password</em> flow without the username and password appended to the encoded query passed along as the body, unless the service states through the url in which case is wrong. There is also the Implicit Grant flow which is useful for client side applications that run on languages such as JavaScript.</p>
+      <p>By far the easiest to explain, here we have what is called a <strong>Client Credentials</strong> authorization flow. <a href="https://tools.ietf.org/html/draft-ietf-oauth-v2-31#section-4.4" target="_blank">[26, 4.4]</a> Which is also basically just the <em>Resource Owner Password</em> flow without the username and password appended to the encoded query passed along as the body, unless the service states through the url in which case is wrong.</p>
 
       <section class="seperator blockquote skyblue">
         <h2>Info</h2>
@@ -499,7 +518,7 @@ oauth_callback_confirmed=true</pre>
           <ul>
             <li><code>grant_type</code> = <code>client_credentials</code></li>
           </ul>
-          <p>If you aren&#39;t using the <code>Authorization</code> header:</p>
+          <p>If you aren't using the <code>Authorization</code> header:</p>
           <ul>
             <li><code>client_id</code></li>
             <li><code>client_secret</code></li>
@@ -513,6 +532,7 @@ oauth_callback_confirmed=true</pre>
           </ul>
         </li>
       </ol>
+
 
       <h3>Implicit Grant</h3>
 
@@ -564,7 +584,7 @@ oauth_callback_confirmed=true</pre>
 
             <pre><code>grant_type=password&amp;username=my_username&amp;password=my_password</code></pre>
 
-            <p>If you aren&#39;t using the <code>Authorization</code> header, these must be passed as well:</p>
+            <p>If you aren't using the <code>Authorization</code> header, these must be passed as well:</p>
             <li><code>client_id</code></li>
             <li><code>client_secret</code></li>
 
@@ -585,6 +605,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="oauth-2-three-legged">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 2 (Three Legged)
+        <a href="#oauth-2-three-legged" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>OAuth2 three-legged cuts out a lot of clutter just like the two-legged, no longer are things so complex with signing your requests.</p>
@@ -621,7 +642,7 @@ oauth_callback_confirmed=true</pre>
             <li><code>client_secret</code></li>
             <li><code>code</code></li>
             <li><code>redirect_uri</code>  <em>Optional;</em> see <a href="http://tools.ietf.org/html/rfc6749#section-4.1.3" target="_blank">[20, 4.1.3]</a></li>
-            <li><code>grant_type</code> = <code>&quot;authorization_code&quot;</code>  <a href="http://tools.ietf.org/html/rfc6749#section-4.1.3" target="_blank">[20, 4.1.3]</a></li>
+            <li><code>grant_type</code> = <code>"authorization_code"</code>  <a href="http://tools.ietf.org/html/rfc6749#section-4.1.3" target="_blank">[20, 4.1.3]</a></li>
           </ul>
         </li>
         <li>If <code>client_id</code> and <code>client_secret</code> are valid the Service will invoke a callback on <code>redirect_url</code> that contains an <code>access_token</code>:
@@ -640,9 +661,10 @@ oauth_callback_confirmed=true</pre>
       </ol>
     </section>
 
-    <section class="seperator" id="#oauth-2-refresh-token">
+    <section class="seperator" id="oauth-2-refresh-token">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         OAuth 2 (Refresh Token)
+        <a href="#oauth-2-refresh-token" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>In OAuth2 the <code>access_token</code> sometimes, which is most of the time, has a limited lifetime expectancy. We can assume by the <code>expires_in</code> parameter passed along at the Access Token response stage whether it will live forever or decay
@@ -654,7 +676,7 @@ oauth_callback_confirmed=true</pre>
       <ol>
         <li>Create request to Service Refresh Token URI:
           <ul>
-            <li><code>grant_type</code> = <code>&quot;refresh_token&quot;</code></li>
+            <li><code>grant_type</code> = <code>"refresh_token"</code></li>
             <li><code>scope</code>  <em>Optional;</em> Cannot have any new scopes not previously defined.</li>
             <li><code>refresh_token</code></li>
             <li><code>client_id</code></li>
@@ -673,6 +695,7 @@ oauth_callback_confirmed=true</pre>
     <section class="seperator" id="sources">
       <h1><a href="#table-of-contents" class="pull-right">TOC</a>
         Sources
+        <a href="#sources" class="permalink"><i class="icon-link"></i></a>
       </h1>
 
       <p>Here is a long, windy list of places where I tracked down specific information regarding certain legs or auth specification excluding the original RFC and it's revisions.</p>
@@ -713,7 +736,7 @@ oauth_callback_confirmed=true</pre>
     </section>
   </section>
 
-  <script type="text/javascript" src="//mashape.github.io/notification-bar/embed.js" async defer></script>
+  <script type="text/javascript" async="" src="http://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="http://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="http://d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/xopuyo7jf9/analytics.min.js"></script><script type="text/javascript" async="" src="http://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="http://d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/xopuyo7jf9/analytics.min.js"></script><script type="text/javascript" src="//mashape.github.io/notification-bar/embed.js" async="" defer=""></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   <script src="assets/js/just.the.tip.js" charset="utf-8"></script>
@@ -722,6 +745,12 @@ oauth_callback_confirmed=true</pre>
     $('[data-title]').each(function () {
       $(this).justTheTip().arrow(11).pos('top').attr(['data-title']);
     });
+
+    $('.toc a,a.pull-right,a.permalink').click(function () {
+      // Firefox & IE put the scrolltop at the html level.
+      $('body,html').scrollTop($($(this).attr('href')).offset().top - 75);
+      return false;
+    });
   </script>
 
   <script type="text/javascript">
@@ -729,5 +758,4 @@ oauth_callback_confirmed=true</pre>
     analytics.load("xopuyo7jf9");
   </script>
 
-</body>
-</html>
+</body></html>
